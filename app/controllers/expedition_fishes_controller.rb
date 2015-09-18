@@ -27,6 +27,6 @@ class ExpeditionFishesController < ApplicationController
   end
 
   def expedition_params
-    params.require(:expedition_fish).permit(:fish_id, :expedition_id, :length, :weight, :bat_id, :notes)
+    params.require(:expedition_fish).permit(:fish_id, :expedition_id, :length, :weight, :bait_id, :notes)
   end
 end

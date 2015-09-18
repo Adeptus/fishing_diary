@@ -21,4 +21,7 @@
 //= require angular-ui-bootstrap-tpls
 //= require angular-sanitize
 //= require bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
+//= require pickers
 //= require_tree .

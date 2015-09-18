@@ -1,15 +1,9 @@
 = simple_form_for [@expedition, @expedition_fish], :html => { :class => 'form-horizontal' } do |f|
   =# f.input :count
-  =# error_span(@expedition_fish[:count])
   = f.input :fish_id, collection: Fish.all
-  = error_span(@expedition_fish[:fish_id])
   = f.input :length
-  = error_span(@expedition_fish[:length])
   = f.input :weight
-  = error_span(@expedition_fish[:weight])
-  = f.input :bat_id
-  = error_span(@expedition_fish[:bat_id])
+  = f.input :bait_id, collection: Bait.all
   = f.input :notes
-  = error_span(@expedition_fish[:notes])
   = f.button :submit, :class => 'btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), expeditions_path, :class => 'btn btn-default'

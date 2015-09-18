@@ -15,7 +15,7 @@
         %td= fish.fish.name
         %td= fish.length
         %td= fish.weight
-        %td= fish.bat_id
+        %td= fish.bait_id
         %td= fish.notes
         %td
           = link_to _("usuń"), expedition_expedition_fish_path(fish.expedition, fish), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'

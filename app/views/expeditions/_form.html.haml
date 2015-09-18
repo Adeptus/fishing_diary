@@ -1,6 +1,6 @@
 = simple_form_for @expedition, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :start_at
-  = f.input :end_at
+  = f.input :start_at, :as => :datetime_picker
+  = f.input :end_at, :as => :datetime_picker
   = f.input :place_id, collection: Place.all
   = f.input :notes
   = f.input :pressure
