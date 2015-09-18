@@ -14,6 +14,19 @@ class ExpeditionFishesController < ApplicationController
     end
   end
 
+  def edit
+    @expedition_fish = @expedition.expedition_fishes.find(params[:id])
+  end
+
+  def update
+    @expedition_fish = @expedition.expedition_fishes.find(params[:id])
+    if @expedition_fish.update(expedition_params)
+      redirect_to @expedition_fish.expedition
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @expedition_fish = @expedition.expedition_fishes.find(params[:id])
     @expedition_fish.destroy

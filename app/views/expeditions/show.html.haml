@@ -25,7 +25,5 @@
 = link_to t('.edit', :default => t("helpers.links.edit")), edit_expedition_path(@expedition), :class => 'btn btn-default'
 = link_to t('.destroy', :default => t("helpers.links.destroy")), expedition_path(@expedition), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 
-= render 'expedition_fish/list', expedition_fishes: @expedition.expedition_fishes
+= render 'expedition_fishes/list', expedition_fishes: @expedition.expedition_fishes
 = link_to t('.new', :default => t("helpers.links.new")), new_expedition_expedition_fish_path(@expedition), :class => 'btn btn-primary'
-
-152-55-330

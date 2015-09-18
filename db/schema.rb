@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916221024) do
+ActiveRecord::Schema.define(version: 20150918111448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 20150916221024) do
     t.integer  "fish_id"
     t.integer  "expedition_id"
     t.integer  "length"
-    t.integer  "weight"
+    t.decimal  "weight",        precision: 5, scale: 2
     t.integer  "bait_id"
     t.text     "notes"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "expeditions", force: :cascade do |t|

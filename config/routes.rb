@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :fish
   resources :expeditions do
-    resources :expedition_fishes, only: [:new, :create, :destroy]
+    resources :expedition_fishes, except: [:index, :show]
   end
   resources :places
   # The priority is based upon order of creation: first created -> highest priority.

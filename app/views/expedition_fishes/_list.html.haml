@@ -18,5 +18,5 @@
         %td= fish.bait_id
         %td= fish.notes
         %td
-          = link_to _("edit"), edit_expedition_expedition_fish_path(fish.expedition, fish), class: 'btn btn-xs btn-danger'
+          = link_to _("edit"), edit_expedition_expedition_fish_path(fish.expedition, fish), class: 'btn btn-xs btn-default'
           = link_to _("usuń"), expedition_expedition_fish_path(fish.expedition, fish), method: :delete, data: { confirm: _('Are you sure?') }, class: 'btn btn-xs btn-danger'

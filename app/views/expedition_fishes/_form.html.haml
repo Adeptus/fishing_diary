@@ -1,0 +1,9 @@
+= simple_form_for [@expedition, @expedition_fish] do |f|
+  =# f.input :count
+  = f.input :fish_id, collection: Fish.all, label: _("Fish Type")
+  = f.input :length, label: _("Length(cm)")
+  = f.input :weight, label: _("Weight(cm)")
+  = f.input :bait_id, collection: Bait.all, label: _("Bait")
+  = f.input :notes, label: _("Description")
+  = f.button :submit, :class => 'btn-primary'
+  = link_to _("cancel"), expeditions_path, :class => 'btn btn-default'
