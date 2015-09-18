@@ -1,0 +1,32 @@
+.page-header
+  = link_to new_bait_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Bait
+  %h1 Listing baits
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Producer
+        %th Taste
+        %th Color
+        %th Size
+        %th Bait type
+        %th Shape
+        %th
+        %th
+        %th
+
+    %tbody
+      - @baits.each do |bait|
+        %tr
+          %td= bait.producer_id
+          %td= bait.taste
+          %td= bait.color
+          %td= bait.size
+          %td= bait.bait_type_id
+          %td= bait.shape
+          %td= link_to 'Show', bait
+          %td= link_to 'Edit', edit_bait_path(bait)
+          %td= link_to 'Destroy', bait, data: { confirm: 'Are you sure?' }, method: :delete

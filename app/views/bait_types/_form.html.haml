@@ -1,0 +1,16 @@
+= simple_form_for @bait_type, html: { role: "form" } do |f|
+  -if @bait_type.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@bait_type.errors.count, "error")} prohibited this bait_type from being saved:"
+
+      %ul
+        - @bait_type.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :name
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

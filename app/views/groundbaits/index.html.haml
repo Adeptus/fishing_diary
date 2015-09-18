@@ -1,0 +1,27 @@
+.page-header
+  = link_to new_groundbait_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    =_("New Groundbait")
+  %h1 Listing groundbaits
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th=s _("Color")
+        %th=s _("Groundbait type")
+        %th=s _("Taste")
+        %th
+        %th
+        %th
+
+    %tbody
+      - @groundbaits.each do |groundbait|
+        %tr
+          %td= groundbait.color
+          %td= groundbait.groundbait_type
+          %td= groundbait.taste
+          %td
+            = link_to _('Show'), groundbait
+            = link_to _('Edit'), edit_groundbait_path(groundbait)
+            = link_to _('Destroy'), groundbait, data: { confirm: 'Are you sure?' }, method: :delete

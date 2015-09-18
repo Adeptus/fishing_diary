@@ -1,0 +1,7 @@
+= simple_form_for @place do |f|
+  = f.input :place_type
+  = f.input :name
+  = f.input :notes
+  = f.input :address
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), places_path, :class => 'btn btn-default'

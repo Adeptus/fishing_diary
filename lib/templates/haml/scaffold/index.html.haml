@@ -1,0 +1,27 @@
+.page-header
+  = link_to new_<%= singular_table_name %>_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    =_("New <%= human_name %>")
+  %h1 Listing <%= plural_table_name %>
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+<% for attribute in attributes -%>
+        %th=s _("<%= attribute.human_name %>")
+<% end -%>
+        %th
+        %th
+        %th
+
+    %tbody
+      - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+        %tr
+<% for attribute in attributes -%>
+          %td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+          %td
+            = link_to _('Show'), <%= singular_table_name %>
+            = link_to _('Edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
+            = link_to _('Destroy'), <%= singular_table_name %>, data: { confirm: 'Are you sure?' }, method: :delete

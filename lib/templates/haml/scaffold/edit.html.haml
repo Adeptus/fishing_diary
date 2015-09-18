@@ -1,0 +1,10 @@
+.page-header
+  = link_to <%= index_helper %>_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    = _("Back")
+  = link_to @<%= singular_table_name %>, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-info-sign
+    = _("Show")
+  %h1= _("Editing <%= singular_table_name %>")
+
+= render 'form'

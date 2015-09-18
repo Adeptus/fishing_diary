@@ -1,0 +1,35 @@
+- model_class = Expedition
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:start_at)
+      %th= model_class.human_attribute_name(:end_at)
+      %th= model_class.human_attribute_name(:place_id)
+      %th= model_class.human_attribute_name(:notes)
+      %th= model_class.human_attribute_name(:pressure)
+      %th= model_class.human_attribute_name(:showers)
+      %th= model_class.human_attribute_name(:overcast)
+      %th= model_class.human_attribute_name(:temperature)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @expeditions.each do |expedition|
+      %tr
+        %td= link_to expedition.id, expedition_path(expedition)
+        %td= expedition.start_at
+        %td= expedition.end_at
+        %td= expedition.place_id
+        %td= expedition.notes
+        %td= expedition.pressure
+        %td= expedition.showers
+        %td= expedition.overcast
+        %td= expedition.temperature
+        %td=l expedition.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_expedition_path(expedition), :class => 'btn btn-default btn-xs'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), expedition_path(expedition), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_expedition_path, :class => 'btn btn-primary'

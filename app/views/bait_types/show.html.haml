@@ -1,0 +1,12 @@
+.page-header
+  = link_to bait_types_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_bait_type_path(@bait_type), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show bait_type
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @bait_type.name

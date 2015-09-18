@@ -1,0 +1,16 @@
+.page-header
+  = link_to groundbaits_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    = _("Back")
+  = link_to edit_groundbait_path(@groundbait), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    = _("Edit")
+  %h1= _("Show groundbait")
+
+%dl.dl-horizontal
+  %dt= _("Color:")
+  %dd= @groundbait.color
+  %dt= _("Groundbait type:")
+  %dd= @groundbait.groundbait_type
+  %dt= _("Taste:")
+  %dd= @groundbait.taste

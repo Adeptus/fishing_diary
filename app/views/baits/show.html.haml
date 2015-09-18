@@ -1,0 +1,22 @@
+.page-header
+  = link_to baits_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_bait_path(@bait), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show bait
+
+%dl.dl-horizontal
+  %dt Producer:
+  %dd= @bait.producer_id
+  %dt Taste:
+  %dd= @bait.taste
+  %dt Color:
+  %dd= @bait.color
+  %dt Size:
+  %dd= @bait.size
+  %dt Bait type:
+  %dd= @bait.bait_type_id
+  %dt Shape:
+  %dd= @bait.shape

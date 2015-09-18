@@ -1,0 +1,18 @@
+= simple_form_for @groundbait, html: { Srole: "form" } do |f|
+  -if @groundbait.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@groundbait.errors.count, "error")} prohibited this groundbait from being saved:"
+
+      %ul
+        - @groundbait.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :color
+  = f.input :groundbait_type
+  = f.input :taste
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'
