@@ -8,9 +8,6 @@
       %li= link_to _("Places"), places_path
       %li= link_to _("Expeditions"), expeditions_path
       %li= link_to _("Fish"), fish_index_path
-      %li= link_to _("Baits"), baits_path
-      %li= link_to _("Producers"), producers_path
-      %li= link_to _("Bait Types"), bait_types_path
 %ul.nav.nav-pills.pull-right
   - if user_signed_in?
     %li= link_to _("Sign out"), destroy_user_session_path, :method => :delete

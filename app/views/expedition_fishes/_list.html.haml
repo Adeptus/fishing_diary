@@ -6,7 +6,7 @@
       %th= _("Gatunek")
       %th= _('Długość(cm)')
       %th= _('Waga(kg)')
-      %th= _("Bait")
+      /%th= _("Bait")
       %th= _('Notatka')
       %th= _('Akcje')
   %tbody
@@ -15,7 +15,7 @@
         %td= fish.fish.name
         %td= "#{fish.length} cm"
         %td= "#{fish.weight} kg"
-        %td= fish.bait.full_name if fish.bait
+        /%td= fish.bait.full_name if fish.bait
         %td= truncate(fish.notes)
         %td
           = link_to _("edit"), edit_expedition_expedition_fish_path(fish.expedition, fish), class: 'btn btn-xs btn-default'
