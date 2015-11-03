@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :groundbaits
   resources :producers
   resources :baits
   resources :bait_types

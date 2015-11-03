@@ -66,14 +66,6 @@ ActiveRecord::Schema.define(version: 20151103202549) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "groundbaits", force: :cascade do |t|
-    t.string   "color"
-    t.string   "groundbait_type"
-    t.string   "taste"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "places", force: :cascade do |t|
     t.string   "place_type"
     t.string   "name"
