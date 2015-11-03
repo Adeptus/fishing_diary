@@ -83,12 +83,6 @@ ActiveRecord::Schema.define(version: 20151103202549) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "producers", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

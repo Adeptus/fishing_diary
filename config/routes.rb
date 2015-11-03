@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :producers
   resources :baits
   resources :bait_types
-  resources :posts
   resources :fish
   resources :expeditions do
     resources :expedition_fishes, except: [:index, :show]
