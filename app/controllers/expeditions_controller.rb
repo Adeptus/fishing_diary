@@ -12,7 +12,7 @@ class ExpeditionsController < ApplicationController
 
   # GET /expeditions/new
   def new
-    @expedition = Expedition.new
+    @expedition = current_user.expeditions.new
   end
 
   # GET /expeditions/1/edit
@@ -21,7 +21,7 @@ class ExpeditionsController < ApplicationController
 
   # POST /expeditions
   def create
-    @expedition = Expedition.new(expedition_params)
+    @expedition = current_user.expeditions.new(expedition_params)
 
     if @expedition.save
       redirect_to @expedition, notice: 'Expedition was successfully created.'

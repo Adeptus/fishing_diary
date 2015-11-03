@@ -10,13 +10,12 @@
       %tr
         %th Name
         %th
-        %th
-        %th
 
     %tbody
       - @bait_types.each do |bait_type|
         %tr
           %td= bait_type.name
-          %td= link_to 'Show', bait_type
-          %td= link_to 'Edit', edit_bait_type_path(bait_type)
-          %td= link_to 'Destroy', bait_type, data: { confirm: 'Are you sure?' }, method: :delete
+          %td
+            = link_to 'Show', bait_type
+            = link_to 'Edit', edit_bait_type_path(bait_type)
+            = link_to 'Destroy', bait_type, data: { confirm: 'Are you sure?' }, method: :delete

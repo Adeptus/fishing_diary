@@ -3,4 +3,5 @@ class Expedition < ActiveRecord::Base
   has_many :fishes, through: :expedition_fishes
 
   belongs_to :place
+  belongs_to :user
 end

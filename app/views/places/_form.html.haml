@@ -3,5 +3,5 @@
   = f.input :name
   = f.input :notes
   = f.input :address
-  = f.button :submit, :class => 'btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), places_path, :class => 'btn btn-default'
+  = f.button :submit, class: 'btn-primary'
+  = link_to _("cancel"), places_path, class: 'btn btn-default'

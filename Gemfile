@@ -4,6 +4,7 @@ gem 'rails', '4.2.1'
 gem 'jquery-rails'
 gem 'pg'
 gem 'gettext_i18n_rails'
+gem 'devise'
 
 gem 'angular-rails-templates'
 gem 'angular-ui-bootstrap-rails'

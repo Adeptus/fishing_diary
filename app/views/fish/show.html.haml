@@ -1,17 +1,15 @@
-- model_class = Fish
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.titleize
+  %h1= @fish.name
 
 %p
-  %strong= model_class.human_attribute_name(:name) + ':'
-  %br
+  %strong= _("name:")
   = @fish.name
 %p
-  %strong= model_class.human_attribute_name(:description) + ':'
+  %strong= _("description:")
   %br
   = @fish.description
 
 
-= link_to t('.back', :default => t("helpers.links.back")), fish_index_path, :class => 'btn btn-default'
-= link_to t('.edit', :default => t("helpers.links.edit")), edit_fish_path(@fish), :class => 'btn btn-default'
-= link_to t('.destroy', :default => t("helpers.links.destroy")), fish_path(@fish), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+= link_to _("back"), fish_index_path, class: 'btn btn-default'
+= link_to _("edit"), edit_fish_path(@fish), class: 'btn btn-default'
+= link_to _("destroy"), fish_path(@fish), method: "delete", data: { confirm: _('Are you sure?') }, class: 'btn btn-danger'
