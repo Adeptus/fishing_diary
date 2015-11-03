@@ -1,7 +1,8 @@
-= simple_form_for @place do |f|
-  = f.input :place_type
+= simple_form_for @form, as: :place, url: (@form.persisted? ? place_path(@form) : places_path), method: (@form.persisted? ? :patch : :post) do |f|
+  = f.input :place_type, collection: PlaceType, include_blank: false
+  = f.input :water_type, collection: WaterType, include_blank: false
   = f.input :name
   = f.input :notes
   = f.input :address
-  = f.button :submit, class: 'btn-primary'
+  = f.submit _('Save'), class: 'btn-primary'
   = link_to _("cancel"), places_path, class: 'btn btn-default'
