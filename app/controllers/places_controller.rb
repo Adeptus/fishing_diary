@@ -13,7 +13,7 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @form = PlaceForm.new(place_params)
+    @form = PlaceForm.new(place_params.merge(user_id: current_user.id))
 
     if @form.valid?
       place = Place.create(@form.attributes)
@@ -24,11 +24,12 @@ class PlacesController < ApplicationController
   end
 
   def edit
-    @form = @place #TODO: updateform object
+    @form = PlaceForm.new(@place.attributes.except('created_at','updated_at'))
   end
 
   def update
-    if @place.update(place_params)
+    @form = PlaceForm.new(@place.attributes.except('created_at','updated_at').merge(place_params))
+    if @place.update(@form.attributes)
       redirect_to @place, notice: _('Place was successfully updated.')
     else
       render :edit

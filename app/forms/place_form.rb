@@ -2,14 +2,16 @@ class PlaceForm
   include ActiveModel::Model
 
   attr_accessor(
+    :id,
     :place_type,
     :name,
     :notes,
     :address,
-    :water_type
+    :water_type,
+    :user_id
   )
 
-  validates :name, :place_type, :water_type, presence: true
+  validates :name, :place_type, :water_type, :user_id, presence: true
 
   def attributes
     {
@@ -17,7 +19,8 @@ class PlaceForm
       name: name,
       notes: notes,
       address: address,
-      water_type: water_type
+      water_type: water_type,
+      user_id: user_id
     }
   end
 end
