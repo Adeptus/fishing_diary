@@ -24,10 +24,12 @@ class PlacesController < ApplicationController
   end
 
   def edit
+    authorize! :update, @place
     @form = PlaceForm.new(@place.attributes.except('created_at','updated_at'))
   end
 
   def update
+    authorize! :update, @place
     @form = PlaceForm.new(@place.attributes.except('created_at','updated_at').merge(place_params))
     if @place.update(@form.attributes)
       redirect_to @place, notice: _('Place was successfully updated.')
@@ -37,6 +39,7 @@ class PlacesController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @place
     @place.destroy
     redirect_to places_url, notice: _('Place was successfully destroyed.')
   end

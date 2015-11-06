@@ -8,4 +8,7 @@ Rails.application.routes.draw do
     resources :expedition_fishes, except: [:index, :show]
   end
   resources :places
+
+
+ root to: 'dashboard#index'
 end

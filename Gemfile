@@ -18,6 +18,7 @@ gem 'classy_enum'
 gem 'kaminari'
 gem 'rabl'
 gem 'simple_form'
+gem 'cancancan', '~> 1.10'
 
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
