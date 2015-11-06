@@ -13,13 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require angular
-//= require angular-rails-templates
-//= require angular-resource
-//= require angular-route
-//= require angular-rails-templates
-//= require angular-ui-bootstrap-tpls
-//= require angular-sanitize
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker

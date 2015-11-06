@@ -6,10 +6,6 @@ gem 'pg'
 gem 'gettext_i18n_rails'
 gem 'devise'
 
-gem 'angular-rails-templates'
-gem 'angular-ui-bootstrap-rails'
-gem 'angularjs-rails'
-
 gem 'bootstrap-sass'
 gem 'bootstrap-generators', '~> 3.3.4'
 gem 'uglifier', '>= 1.3.0'
@@ -19,10 +15,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'classy_enum'
-gem 'coffee-rails', '~> 4.1.0'
 gem 'kaminari'
 gem 'rabl'
 gem 'simple_form'
+
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
@@ -44,7 +40,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-angular'
   gem 'capybara-user_agent'
   gem 'database_cleaner'
   gem 'launchy'
