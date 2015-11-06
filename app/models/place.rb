@@ -7,4 +7,7 @@ class Place < ActiveRecord::Base
   has_many :expeditions
   has_many :fishes, through: :expeditions
   has_many :expedition_fishes, through: :expeditions
+
+
+  scope :publicly, -> (user) { where('private= ? OR user_id= ?', false, user.id) unless user.admin? }
 end

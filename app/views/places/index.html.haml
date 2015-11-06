@@ -7,9 +7,9 @@
       %th= _("Place type")
       %th= _("Address")
       %th= _("Actions")
-  %tbody
+  %tbody{id: "places-table"}
     - @places.each do |place|
-      %tr
+      %tr{ class: "#{'private' if place.private}"}
         %td= link_to place.name, place_path(place)
         %td= place.place_type
         %td= place.address

@@ -2,10 +2,11 @@ class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
   def index
-    @places = Place.all
+    @places = Place.publicly(current_user)
   end
 
   def show
+    authorize! :read, @place
   end
 
   def new
@@ -50,6 +51,6 @@ class PlacesController < ApplicationController
     end
 
     def place_params
-      params.require(:place).permit(:place_type, :name, :notes, :address, :water_type)
+      params.require(:place).permit(:place_type, :name, :notes, :address, :water_type, :private)
     end
 end

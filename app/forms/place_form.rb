@@ -8,7 +8,8 @@ class PlaceForm
     :notes,
     :address,
     :water_type,
-    :user_id
+    :user_id,
+    :private
   )
 
   validates :name, :place_type, :water_type, :user_id, presence: true
@@ -20,7 +21,8 @@ class PlaceForm
       notes: notes,
       address: address,
       water_type: water_type,
-      user_id: user_id
+      user_id: user_id,
+      private: private
     }
   end
 end

@@ -4,5 +4,6 @@
   = f.input :name
   = f.input :notes
   = f.input :address
+  = f.input :private, as: :boolean
   = f.submit _('Save'), class: 'btn-primary'
   = link_to _("cancel"), places_path, class: 'btn btn-default'
