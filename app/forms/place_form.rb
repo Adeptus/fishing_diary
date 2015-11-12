@@ -9,7 +9,9 @@ class PlaceForm
     :address,
     :water_type,
     :user_id,
-    :private
+    :private,
+    :lat,
+    :lng
   )
 
   validates :name, :place_type, :water_type, :user_id, presence: true
@@ -22,6 +24,8 @@ class PlaceForm
       address: address,
       water_type: water_type,
       user_id: user_id,
+      lat: lat,
+      lng: lng,
       private: private
     }
   end

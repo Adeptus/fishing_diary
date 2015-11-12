@@ -1,9 +1,13 @@
-= simple_form_for @form, as: :place, url: (@form.persisted? ? place_path(@form) : places_path), method: (@form.persisted? ? :patch : :post) do |f|
+- set_var 'placeForm', @form.attributes.to_json
+= simple_form_for @form, as: :place, url: (@form.id ? place_path(@form.id) : places_path), method: (@form.id ? :patch : :post) do |f|
   = f.input :place_type, collection: PlaceType, include_blank: false
   = f.input :water_type, collection: WaterType, include_blank: false
   = f.input :name
   = f.input :notes
   = f.input :address
+  #map{:style => "width: 1000px; height: 500px;"}
+  = f.input :lat, as: :hidden, input_html: { id: 'map_lat' }
+  = f.input :lng, as: :hidden, input_html: { id: 'map_lng' }
   = f.input :private, as: :boolean
   = f.submit _('Save'), class: 'btn-primary'
   = link_to _("cancel"), places_path, class: 'btn btn-default'

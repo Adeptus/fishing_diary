@@ -1,3 +1,4 @@
+- set_var 'place', @place.to_json
 .page-header
   %h1= @place.name
 
@@ -9,7 +10,7 @@
   = @place.name
 %p
   %strong= _("address:")
-  = @place.address
+  #map{:style => "width: 1000px; height: 500px;"}
 %p
   %strong= _("notes:")
   %br
