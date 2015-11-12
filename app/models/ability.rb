@@ -12,7 +12,7 @@ class Ability
         object.user_id == user.id
       end
       can :destroy, Place do |object|
-        object.user_id == user.id
+        user.admin?
       end
     end
   end

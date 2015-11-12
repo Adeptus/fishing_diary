@@ -18,7 +18,7 @@ class PlacesController < ApplicationController
 
     if @form.valid?
       place = Place.create(@form.attributes)
-      redirect_to place, notice: _('Place was successfully created.')
+      redirect_to place, notice: _('Łowisko zostało dodane')
     else
       render :new
     end
@@ -33,7 +33,7 @@ class PlacesController < ApplicationController
     authorize! :update, @place
     @form = PlaceForm.new(@place.attributes.except('created_at','updated_at').merge(place_params))
     if @place.update(@form.attributes)
-      redirect_to @place, notice: _('Place was successfully updated.')
+      redirect_to @place, notice: _('Łowisko zostało edytowane')
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class PlacesController < ApplicationController
   def destroy
     authorize! :destroy, @place
     @place.destroy
-    redirect_to places_url, notice: _('Place was successfully destroyed.')
+    redirect_to places_url, notice: _('Łowisko zostało usunięte')
   end
 
   private

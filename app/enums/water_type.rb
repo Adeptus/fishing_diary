@@ -7,7 +7,7 @@ class WaterType::Flowing < WaterType
   end
 
   def text
-    _("Flowing")
+    _("Płynąca")
   end
 end
 
@@ -17,6 +17,6 @@ class WaterType::Standing < WaterType
   end
 
   def text
-    _("Standing")
+    _("Stojąca")
   end
 end

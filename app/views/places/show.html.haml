@@ -3,21 +3,21 @@
   %h1= @place.name
 
 %p
-  %strong= _("Place type:")
-  = @place.place_type
+  %strong= _("Typ łowiska:")
+  = @place.place_type.text
 %p
-  %strong= _("name:")
-  = @place.name
+  %strong= _("Rodzaj wody:")
+  = @place.water_type.text
 %p
-  %strong= _("address:")
+  %strong= _("Adres:")
   #map{:style => "width: 1000px; height: 500px;"}
 %p
-  %strong= _("notes:")
+  %strong= _("Opis:")
   %br
   = @place.notes
 
-= link_to _("back"), places_path, class: 'btn btn-default'
-= link_to _("edit"), edit_place_path(@place), class: 'btn btn-default'
-= link_to _("destroy"), place_path(@place), method: "delete", data: { confirm: _('Are you sure?') }, class: 'btn btn-danger'
+= link_to _("cofnij"), places_path, class: 'btn btn-default'
+= link_to _("edytuj"), edit_place_path(@place), class: 'btn btn-default'
+= link_to _("usuń"), place_path(@place), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
 
 = render 'expedition_fishes/list', expedition_fishes: @place.expedition_fishes

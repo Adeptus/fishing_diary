@@ -20,7 +20,7 @@
         %td= expedition.overcast
         %td= expedition.temperature
         %td
-          = link_to _("edit"), edit_expedition_path(expedition), class: 'btn btn-default btn-xs'
-          = link_to _("destroy"), expedition_path(expedition), method: :delete, data: { confirm: _('Are you sure?') }, class: 'btn btn-xs btn-danger'
+          = link_to _("edytuj"), edit_expedition_path(expedition), class: 'btn btn-default btn-xs'
+          = link_to _("usuń"), expedition_path(expedition), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
 
 = link_to _("Add"), new_expedition_path, class: 'btn btn-primary'

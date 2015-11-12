@@ -7,7 +7,7 @@ class PlaceType::Commercialism < PlaceType
   end
 
   def text
-    _("Commercialism")
+    _("Komercyjne")
   end
 end
 
@@ -27,7 +27,7 @@ class PlaceType::Wild < PlaceType
   end
 
   def text
-    _("Wild")
+    _("Dzikie")
   end
 end
 
@@ -37,7 +37,7 @@ class PlaceType::Section < PlaceType
   end
 
   def text
-    _("Section")
+    _("Woda sekcyjna")
   end
 end
 
@@ -47,6 +47,6 @@ class PlaceType::Private < PlaceType
   end
 
   def text
-    _("Private")
+    _("Prywatna")
   end
 end

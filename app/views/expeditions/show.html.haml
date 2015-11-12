@@ -16,9 +16,9 @@
 
 
 = link_to _("Add fish"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-default'
-= link_to _("back"), expeditions_path, class: 'btn btn-default'
-= link_to _("edit"), edit_expedition_path(@expedition), class: 'btn btn-default'
-= link_to _("destroy"), expedition_path(@expedition), method: "delete", data: { confirm: _('Are you sure?') }, class: 'btn btn-danger'
+= link_to _("cofnij"), expeditions_path, class: 'btn btn-default'
+= link_to _("edytuj"), edit_expedition_path(@expedition), class: 'btn btn-default'
+= link_to _("usuń"), expedition_path(@expedition), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
 
 = render 'expedition_fishes/list', expedition_fishes: @expedition.expedition_fishes
 = link_to _("Add fish"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-primary'

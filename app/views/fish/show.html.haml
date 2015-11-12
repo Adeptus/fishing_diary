@@ -10,6 +10,6 @@
   = @fish.description
 
 
-= link_to _("back"), fish_index_path, class: 'btn btn-default'
-= link_to _("edit"), edit_fish_path(@fish), class: 'btn btn-default'
-= link_to _("destroy"), fish_path(@fish), method: "delete", data: { confirm: _('Are you sure?') }, class: 'btn btn-danger'
+= link_to _("cofnij"), fish_index_path, class: 'btn btn-default'
+= link_to _("edytuj"), edit_fish_path(@fish), class: 'btn btn-default'
+= link_to _("usuń"), fish_path(@fish), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'

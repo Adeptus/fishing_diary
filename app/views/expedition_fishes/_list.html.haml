@@ -18,5 +18,5 @@
         /%td= fish.bait.full_name if fish.bait
         %td= truncate(fish.notes)
         %td
-          = link_to _("edit"), edit_expedition_expedition_fish_path(fish.expedition, fish), class: 'btn btn-xs btn-default'
-          = link_to _("usuń"), expedition_expedition_fish_path(fish.expedition, fish), method: :delete, data: { confirm: _('Are you sure?') }, class: 'btn btn-xs btn-danger'
+          = link_to _("edytuj"), edit_expedition_expedition_fish_path(fish.expedition, fish), class: 'btn btn-xs btn-default'
+          = link_to _("usuń"), expedition_expedition_fish_path(fish.expedition, fish), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'

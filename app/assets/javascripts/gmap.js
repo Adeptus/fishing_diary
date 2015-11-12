@@ -23,7 +23,7 @@ $(function() {
         markers = handler.addMarkers(markers_array);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
-        handler.getMap().setZoom(12);
+        handler.getMap().setZoom(6);
       });
     }
   }

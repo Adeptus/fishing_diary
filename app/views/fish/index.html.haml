@@ -12,7 +12,7 @@
         %td= link_to fish.name, fish_path(fish)
         %td= fish.description
         %td
-          = link_to _("edit"), edit_fish_path(fish), class: 'btn btn-default btn-xs'
-          = link_to _("destroy"), fish_path(fish), method: :delete, data: { confirm: _('Are you sure?') }, class: 'btn btn-xs btn-danger'
+          = link_to _("edytuj"), edit_fish_path(fish), class: 'btn btn-default btn-xs'
+          = link_to _("usuń"), fish_path(fish), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
 
 = link_to _("Add fish"), new_fish_path, class: 'btn btn-primary'

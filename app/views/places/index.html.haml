@@ -1,23 +1,23 @@
 - set_var 'places', @places.to_json
 .page-header
-  %h1= _("Places")
+  %h1= _("Łowiska")
 
 #map{:style => "width: 1200px; height: 600px;"}
 %table.table.table-striped
   %thead
     %tr
-      %th= _("Name")
-      %th= _("Place type")
-      %th= _("Address")
-      %th= _("Actions")
+      %th= _("Nazwa")
+      %th= _("Typ")
+      %th= _("Rodzaj wody")
+      %th= _("Akcje")
   %tbody{id: "places-table"}
     - @places.each do |place|
       %tr{ class: "#{'private' if place.private}"}
         %td= link_to place.name, place_path(place)
-        %td= place.place_type
-        %td= place.address
+        %td= place.place_type.text
+        %td= place.water_type.text
         %td
-          = link_to _("edit"), edit_place_path(place), class: 'btn btn-default btn-xs'
-          = link_to _("destroy"), place_path(place), method: :delete, data: { confirm: _('Are you sure?') }, class: 'btn btn-xs btn-danger'
+          = link_to _("edytuj"), edit_place_path(place), class: 'btn btn-default btn-xs'
+          = link_to _("usuń"), place_path(place), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
 
-= link_to _("new"), new_place_path, class: 'btn btn-primary'
+= link_to _("Stwórz"), new_place_path, class: 'btn btn-primary'
