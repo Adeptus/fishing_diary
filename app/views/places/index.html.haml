@@ -1,23 +1,39 @@
 - set_var 'places', @places.to_json
-.page-header
-  %h1= _("Łowiska")
+.row
+  .col-md-6
+    = link_to _("Dodaj łowisko"), new_place_path, class: 'btn btn-primary'
 
-#map{:style => "width: 1200px; height: 600px;"}
-%table.table.table-striped
-  %thead
-    %tr
-      %th= _("Nazwa")
-      %th= _("Typ")
-      %th= _("Rodzaj wody")
-      %th= _("Akcje")
-  %tbody{id: "places-table"}
-    - @places.each do |place|
-      %tr{ class: "#{'private' if place.private}"}
-        %td= link_to place.name, place_path(place)
-        %td= place.place_type.text
-        %td= place.water_type.text
-        %td
-          = link_to _("edytuj"), edit_place_path(place), class: 'btn btn-default btn-xs'
-          = link_to _("usuń"), place_path(place), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
+  .col-md-6
+    = simple_form_for '', url: places_path, method: :get do |f|
+      .col-md-6
+        = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
+        = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
+        = f.input :place_type, collection: PlaceType.select_options, label: _("Typ łowiska"), selected: params[:place_type], include_blank: true
+      .col-md-6
+        = f.input :water_type, collection: WaterType.select_options, label: _("Rodzaj wody"), selected: params[:water_type], include_blank: true
+      .col-md-6
+        = f.input :search, label: false, placeholder: _("Szukaj"), input_html: { value: params[:search]}
+      .col-md-6
+        = f.submit _("Filtruj")
 
-= link_to _("Stwórz"), new_place_path, class: 'btn btn-primary'
+.col-md-6
+  #map{:style => "width: 750px; height: 600px;"}
+.col-md-6
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= sortable 'name', _("Nazwa")
+        %th= sortable 'place_type', _("Typ")
+        %th= sortable 'water_type', _("Rodzaj wody")
+        %th= _("Ryby")
+    %tbody{id: "places-table"}
+      - @places.each do |place|
+        %tr{ class: "#{'private' if place.private}"}
+          %td
+            %b= link_to place.name, place_path(place)
+            .clearfix
+            = link_to _("edytuj"), edit_place_path(place)
+            = link_to _("usuń"), place_path(place), method: :delete, data: { confirm: _("Czy jesteś pewien?") }
+          %td= place.place_type.text
+          %td= place.water_type.text
+          %td

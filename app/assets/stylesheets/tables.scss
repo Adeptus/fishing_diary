@@ -1,0 +1,12 @@
+th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  &.asc {
+    background-image: url(sort_asc.png);
+  }
+
+  &.desc {
+    background-image: url(sort_desc.png);
+  }
+}

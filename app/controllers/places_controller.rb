@@ -1,8 +1,9 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @places = Place.publicly(current_user)
+    @places = PlaceQuery.new(current_user, places_params).results
   end
 
   def show
@@ -46,11 +47,32 @@ class PlacesController < ApplicationController
   end
 
   private
-    def set_place
-      @place = Place.find(params[:id])
-    end
 
-    def place_params
-      params.require(:place).permit(:place_type, :name, :notes, :address, :water_type, :private, :lat, :lng)
-    end
+  def set_place
+    @place = Place.find(params[:id])
+  end
+
+  def place_params
+    params.require(:place).permit(
+      :place_type,
+      :name, :notes,
+      :address,
+      :water_type,
+      :private,
+      :lat,
+      :lng
+    )
+  end
+
+  def places_params
+    params.permit(:sort, :direction, :search, :water_type, :place_type)
+  end
+
+  def sort_column
+    ['name', 'place_type', 'water_type'].include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end

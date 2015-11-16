@@ -79,7 +79,7 @@ $(function() {
     return {
       "lat": place.lat,
       "lng": place.lng,
-      "infowindow": "<b>" + place.name + "</b> "
+      "infowindow": "nazwa: <b>" + place.name + "</b><br />rodzaj: <b>" + place.place_type + "</b><br />"
     }
   }
 
