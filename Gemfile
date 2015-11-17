@@ -17,6 +17,7 @@ gem 'sass-rails', '~> 5.0'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'ckeditor'
 
 gem 'devise'
 gem 'gettext_i18n_rails'

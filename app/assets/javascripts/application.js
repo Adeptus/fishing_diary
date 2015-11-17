@@ -19,4 +19,5 @@
 //= require pickers
 //= require underscore
 //= require gmaps/google
+//= require ckeditor/init
 //= require_tree .

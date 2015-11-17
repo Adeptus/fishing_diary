@@ -4,7 +4,7 @@
     = f.input :place_type, collection: PlaceType.select_options, include_blank: false, label: _("Typ łowiska")
     = f.input :water_type, collection: WaterType.select_options, include_blank: false, label: _("Rodzaj wody")
     = f.input :name, label: _("Nazwa łowiska")
-    = f.input :notes, label: _("Opis")
+    = f.input :notes, as: :ckeditor, label: _("Opis")
     = f.input :private, as: :boolean, label: _("Łowisko prywatne?")
   .col-md-6
     %b= _("Adres")

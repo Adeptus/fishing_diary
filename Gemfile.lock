@@ -82,8 +82,15 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    ckeditor (4.1.4)
+      cocaine
+      orm_adapter (~> 0.5.0)
     classy_enum (4.0.0)
       activerecord (>= 3.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -257,6 +264,7 @@ DEPENDENCIES
   capybara
   capybara-user_agent
   carrierwave
+  ckeditor
   classy_enum
   coffee-rails
   database_cleaner
