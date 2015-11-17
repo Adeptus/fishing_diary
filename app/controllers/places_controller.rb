@@ -65,7 +65,13 @@ class PlacesController < ApplicationController
   end
 
   def places_params
-    params.permit(:sort, :direction, :search, :water_type, :place_type)
+    params.permit(
+      :sort,
+      :direction,
+      :search,
+      :water_type,
+      :place_type
+    )
   end
 
   def sort_column

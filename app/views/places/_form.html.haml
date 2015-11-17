@@ -1,13 +1,15 @@
 - set_var 'placeForm', @form.attributes.to_json
 = simple_form_for @form, as: :place, url: (@form.id ? place_path(@form.id) : places_path), method: (@form.id ? :patch : :post) do |f|
-  = f.input :place_type, collection: PlaceType.select_options, include_blank: false, label: _("Typ łowiska")
-  = f.input :water_type, collection: WaterType.select_options, include_blank: false, label: _("Rodzaj wody")
-  = f.input :name, label: _("Nazwa łowiska")
-  = f.input :notes, label: _("Opis")
-  = f.input :private, as: :boolean, label: _("Łowisko prywatne?")
-  %b= _("Adres")
-  #map{:style => "width: 1000px; height: 500px;"}
-  = f.input :lat, as: :hidden, input_html: { id: 'map_lat' }
-  = f.input :lng, as: :hidden, input_html: { id: 'map_lng' }
-  = f.submit _("Zapisz"), class: 'btn-primary'
+  .col-md-6
+    = f.input :place_type, collection: PlaceType.select_options, include_blank: false, label: _("Typ łowiska")
+    = f.input :water_type, collection: WaterType.select_options, include_blank: false, label: _("Rodzaj wody")
+    = f.input :name, label: _("Nazwa łowiska")
+    = f.input :notes, label: _("Opis")
+    = f.input :private, as: :boolean, label: _("Łowisko prywatne?")
+  .col-md-6
+    %b= _("Adres")
+    #map{:style => "width: 800px; height: 500px;"}
+    = f.input :lat, as: :hidden, input_html: { id: 'map_lat' }
+    = f.input :lng, as: :hidden, input_html: { id: 'map_lng' }
+  = f.submit _("Zapisz"), class: 'btn btn-primary'
   = link_to _("Anuluj"), places_path, class: 'btn btn-default'

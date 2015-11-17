@@ -2,22 +2,24 @@
 .page-header
   %h1= @place.name
 
-%p
-  %strong= _("Typ łowiska:")
-  = @place.place_type.text
-%p
-  %strong= _("Rodzaj wody:")
-  = @place.water_type.text
-%p
-  %strong= _("Adres:")
-  #map{:style => "width: 1000px; height: 500px;"}
-%p
-  %strong= _("Opis:")
-  %br
-  = @place.notes
+.col-md-6
+  %p
+    %strong= _("Typ łowiska:")
+    = @place.place_type.text
+  %p
+    %strong= _("Rodzaj wody:")
+    = @place.water_type.text
+  %p
+    %strong= _("Opis:")
+    %br
+    = @place.notes.html_safe
+  = link_to _("cofnij"), places_path, class: 'btn btn-default'
+  = link_to _("edytuj"), edit_place_path(@place), class: 'btn btn-default'
+  = link_to _("usuń"), place_path(@place), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
+.col-md-6
+  %p
+    %strong= _("Adres:")
+    #map{:style => "width: 800px; height: 500px;"}
 
-= link_to _("cofnij"), places_path, class: 'btn btn-default'
-= link_to _("edytuj"), edit_place_path(@place), class: 'btn btn-default'
-= link_to _("usuń"), place_path(@place), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
 
 = render 'expedition_fishes/list', expedition_fishes: @place.expedition_fishes
