@@ -32,8 +32,10 @@
           %td
             %b= link_to place.name, place_path(place)
             .clearfix
-            = link_to _("edytuj"), edit_place_path(place)
-            = link_to _("usuń"), place_path(place), method: :delete, data: { confirm: _("Czy jesteś pewien?") }
+            - if can? :update, place
+              = link_to _("edytuj"), edit_place_path(place)
+            - if can? :destroy, place
+              = link_to _("usuń"), place_path(place), method: :delete, data: { confirm: _("Czy jesteś pewien?") }
           %td= place.place_type.text
           %td= place.water_type.text
           %td

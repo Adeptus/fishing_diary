@@ -11,9 +11,6 @@ class Ability
       can :update, Place do |object|
         object.user_id == user.id
       end
-      can :destroy, Place do |object|
-        user.admin?
-      end
     end
   end
 end

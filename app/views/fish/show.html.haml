@@ -11,5 +11,7 @@
 
 
 = link_to _("cofnij"), fish_index_path, class: 'btn btn-default'
-= link_to _("edytuj"), edit_fish_path(@fish), class: 'btn btn-default'
-= link_to _("usuń"), fish_path(@fish), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
+- if can? :update, @fish
+  = link_to _("edytuj"), edit_fish_path(@fish), class: 'btn btn-default'
+- if can? :destroy, @fish
+  = link_to _("usuń"), fish_path(@fish), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'

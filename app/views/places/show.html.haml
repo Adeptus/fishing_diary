@@ -14,8 +14,10 @@
     %br
     = @place.notes.html_safe
   = link_to _("cofnij"), places_path, class: 'btn btn-default'
-  = link_to _("edytuj"), edit_place_path(@place), class: 'btn btn-default'
-  = link_to _("usuń"), place_path(@place), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
+  - if can? :update, @place
+    = link_to _("edytuj"), edit_place_path(@place), class: 'btn btn-default'
+  - if can? :destroy, @place
+    = link_to _("usuń"), place_path(@place), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
 .col-md-6
   %p
     %strong= _("Adres:")
