@@ -2,12 +2,12 @@
   %h1= @fish.name
 
 %p
-  %strong= _("name:")
+  %strong= _("Nazwa:")
   = @fish.name
 %p
-  %strong= _("description:")
+  %strong= _("Opis:")
   %br
-  = @fish.description
+  = @fish.description.html_safe
 
 
 = link_to _("cofnij"), fish_index_path, class: 'btn btn-default'
