@@ -1,26 +1,27 @@
 .page-header
-  %h1= _("Expedition")
+  %h1= _("Wyprawy")
+.row
+  .col-md-3
+    = link_to _("Dodaj wyprawę"), new_expedition_path, class: 'btn btn-primary'
 %table.table.table-striped
   %thead
     %tr
-      %th= _("Expedition date")
-      %th= _("Place")
-      %th= _("Pressure")
-      %th= _("Showers")
-      %th= _("Overcast")
-      %th= _("Temperature")
-      %th= _("Actions")
+      %th= _("Data")
+      %th= _("Łowisko")
+      %th= _("Ciśnienie")
+      %th= _("Opady")
+      %th= _("Zachmurzenie")
+      %th= _("Temperatura")
   %tbody
     - @expeditions.each do |expedition|
       %tr
-        %td= link_to (l expedition.start_at.to_date, format: :long), expedition_path(expedition)
+        %td
+          %b= link_to (l expedition.start_at.to_date, format: :long), expedition_path(expedition)
+          .clearfix
+          = link_to _("edytuj"), edit_expedition_path(expedition), class: 'btn btn-default btn-xs'
+          = link_to _("usuń"), expedition_path(expedition), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
         %td= expedition.place.name
         %td= expedition.pressure
         %td= expedition.showers
         %td= expedition.overcast
         %td= expedition.temperature
-        %td
-          = link_to _("edytuj"), edit_expedition_path(expedition), class: 'btn btn-default btn-xs'
-          = link_to _("usuń"), expedition_path(expedition), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
-
-= link_to _("Add"), new_expedition_path, class: 'btn btn-primary'

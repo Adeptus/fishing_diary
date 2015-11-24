@@ -1,24 +1,24 @@
 .page-header
-  %h1= _("Expedition")
+  %h1= _("Wyprawa")
 %p
-  %strong= _("expedition start:")
+  %strong= _("Rozpoczęcie wędkowania:")
   = l @expedition.start_at, format: :long if @expedition.start_at
 %p
-  %strong= _("expedition end:")
+  %strong= _("Zakończenie wędkowania:")
   = l @expedition.end_at, format: :long if @expedition.end_at
 %p
-  %strong= _("Place:")
+  %strong= _("Łowisko:")
   = @expedition.place.name
 %p
-  %strong= _("notes:")
+  %strong= _("Opis:")
   %br
-  = @expedition.notes
+  = @expedition.notes.html_safe
 
 
-= link_to _("Add fish"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-default'
+= link_to _("Dodaj ryby"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-default'
 = link_to _("cofnij"), expeditions_path, class: 'btn btn-default'
 = link_to _("edytuj"), edit_expedition_path(@expedition), class: 'btn btn-default'
 = link_to _("usuń"), expedition_path(@expedition), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
 
 = render 'expedition_fishes/list', expedition_fishes: @expedition.expedition_fishes
-= link_to _("Add fish"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-primary'
+= link_to _("Dodaj ryby"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-primary'
