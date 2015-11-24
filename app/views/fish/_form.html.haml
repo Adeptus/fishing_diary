@@ -1,5 +1,6 @@
 = simple_form_for @fish do |f|
   = f.input :name, label: _("Nazwa")
+  = f.input :fish_type, collection: FishType.select_options, include_blank: false, label: _("Gatunek ryby")
   = f.input :description, as: :ckeditor, label: _("Opis")
   = f.submit _("Zapisz"), class: 'btn btn-primary'
   = link_to _("Anuluj"), fish_index_path, class: 'btn btn-default'

@@ -8,11 +8,13 @@
   %thead
     %tr
       %th= _("Nazwa")
+      %th= _("Gatunek")
       %th= _("Akcje")
   %tbody
     - @fish.each do |fish|
       %tr
         %td= link_to fish.name, fish_path(fish)
+        %td= fish.fish_type.text
         %td
           - if can? :update, fish
             = link_to _("edytuj"), edit_fish_path(fish), class: 'btn btn-default btn-xs'
