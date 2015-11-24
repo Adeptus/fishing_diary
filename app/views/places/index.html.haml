@@ -1,20 +1,16 @@
 - set_var 'places', @places.to_json
 .row
-  .col-md-6
+  .col-md-3
     = link_to _("Dodaj łowisko"), new_place_path, class: 'btn btn-primary'
 
-  .col-md-6
-    = simple_form_for '', url: places_path, method: :get do |f|
-      .col-md-6
-        = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
-        = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
-        = f.input :place_type, collection: PlaceType.select_options, label: _("Typ łowiska"), selected: params[:place_type], include_blank: true
-      .col-md-6
-        = f.input :water_type, collection: WaterType.select_options, label: _("Rodzaj wody"), selected: params[:water_type], include_blank: true
-      .col-md-6
-        = f.input :search, label: false, placeholder: _("Szukaj"), input_html: { value: params[:search]}
-      .col-md-6
-        = f.submit _("Filtruj")
+  .col-md-9
+    = simple_form_for '', url: places_path, method: :get, html: { class: "form-inline" } do |f|
+      = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
+      = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
+      = f.input :search, label: false, placeholder: _("Szukaj"), input_html: { value: params[:search]}
+      = f.input :place_type, collection: PlaceType.select_options, label: _("Typ łowiska"), selected: params[:place_type], include_blank: true
+      = f.input :water_type, collection: WaterType.select_options, label: _("Rodzaj wody"), selected: params[:water_type], include_blank: true
+      = f.submit _("Filtruj")
 
 .col-md-6
   #map{:style => "width: 750px; height: 600px;"}

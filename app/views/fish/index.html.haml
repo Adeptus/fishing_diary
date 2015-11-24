@@ -1,14 +1,21 @@
 .page-header
   %h1= _("Ryby")
 .row
-  .col-md-6
+  .col-md-4
     - if can? :create, Fish
       = link_to _("Dodaj rybę"), new_fish_path, class: 'btn btn-primary'
+  .col-md-8
+    = simple_form_for '', url: fish_index_path, method: :get, html: { class: "form-inline" } do |f|
+      = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
+      = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
+      = f.input :search, label: false, placeholder: _("Szukaj"), input_html: { value: params[:search]}
+      = f.input :fish_type, collection: FishType.select_options, label: _("Gatunek ryby"), selected: params[:fish_type], include_blank: true
+      = f.submit _("Filtruj")
 %table.table.table-striped
   %thead
     %tr
-      %th= _("Nazwa")
-      %th= _("Gatunek")
+      %th= sortable 'name', _("Nazwa")
+      %th= sortable 'fish_type', _("Gatunek")
       %th= _("Akcje")
   %tbody
     - @fish.each do |fish|

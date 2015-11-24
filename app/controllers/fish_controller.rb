@@ -1,8 +1,9 @@
 class FishController < ApplicationController
   before_action :set_fish, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @fish = Fish.all
+    @fish = FishQuery.new(current_user, fishes_params).results
   end
 
   def show
@@ -44,11 +45,29 @@ class FishController < ApplicationController
   end
 
   private
-    def set_fish
-      @fish = Fish.find(params[:id])
-    end
 
-    def fish_params
-      params.require(:fish).permit(:name, :description, :fish_type)
-    end
+  def fishes_params
+    params.permit(
+      :sort,
+      :direction,
+      :search,
+      :fish_type
+    )
+  end
+
+  def set_fish
+    @fish = Fish.find(params[:id])
+  end
+
+  def fish_params
+    params.require(:fish).permit(:name, :description, :fish_type)
+  end
+
+  def sort_column
+    ['name', 'fish_type'].include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end
