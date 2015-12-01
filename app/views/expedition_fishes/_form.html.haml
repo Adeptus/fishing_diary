@@ -1,9 +1,9 @@
-= simple_form_for [@expedition, @expedition_fish] do |f|
+= simple_form_for @form, as: :expedition_fish, url: (@form.id ? expedition_expedition_fish_path(@expedition, @form.id) : expedition_expedition_fishes_path), method: (@form.id ? :patch : :post) do |f|
   =# f.input :count
-  = f.input :fish_id, collection: Fish.all, label: _("Fish Type")
-  = f.input :length, label: _("Length(cm)")
-  = f.input :weight, label: _("Weight(cm)")
+  = f.input :fish_id, collection: Fish.all, label: _("Gatunek ryby")
+  = f.input :length, label: _("Długość(cm)")
+  = f.input :weight, label: _("Waga(kg)")
   =# f.input :bait_id, collection: Bait.all.map{ |b| [b.full_name, b.id] }, label: _("Bait")
-  = f.input :notes, label: _("Description")
+  = f.input :notes, label: _("Opis")
   = f.button :submit, :class => 'btn-primary'
   = link_to _("Anuluj"), expeditions_path, :class => 'btn btn-default'

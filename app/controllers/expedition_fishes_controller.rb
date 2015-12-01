@@ -1,34 +1,34 @@
 class ExpeditionFishesController < ApplicationController
   before_filter :find_expedition
+  before_filter :find_expedition_fish, only: [:edit, :update, :destroy]
 
   def new
-    @expedition_fish = @expedition.expedition_fishes.new
+    @form = ExpeditionFishForm.new
   end
 
   def create
-    @expedition_fish = @expedition.expedition_fishes.new(expedition_params)
-    if @expedition_fish.save
-      redirect_to @expedition_fish.expedition
+    @form = ExpeditionFishForm.new(expedition_params)
+    if @form.valid? && @expedition.expedition_fishes.create(@form.attributes)
+      redirect_to @expedition, notice: _("Ryba została dodana")
     else
       render :new
     end
   end
 
   def edit
-    @expedition_fish = @expedition.expedition_fishes.find(params[:id])
+    @form = ExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at'))
   end
 
   def update
-    @expedition_fish = @expedition.expedition_fishes.find(params[:id])
-    if @expedition_fish.update(expedition_params)
-      redirect_to @expedition_fish.expedition
+    @form = ExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at').merge(expedition_params))
+    if @form.valid? && @expedition_fish.update(@form.attributes)
+      redirect_to @expedition, notice: _("Ryby zostały edytowane")
     else
       render :edit
     end
   end
 
   def destroy
-    @expedition_fish = @expedition.expedition_fishes.find(params[:id])
     @expedition_fish.destroy
     redirect_to @expedition_fish.expedition
   end
@@ -39,7 +39,18 @@ class ExpeditionFishesController < ApplicationController
     @expedition = Expedition.find(params[:expedition_id])
   end
 
+  def find_expedition_fish
+    @expedition_fish = @expedition.expedition_fishes.find(params[:id])
+  end
+
   def expedition_params
-    params.require(:expedition_fish).permit(:fish_id, :expedition_id, :length, :weight, :bait_id, :notes)
+    params.require(:expedition_fish).permit(
+      :fish_id,
+      :expedition_id,
+      :length,
+      :weight,
+      :bait_id,
+      :notes
+    )
   end
 end
