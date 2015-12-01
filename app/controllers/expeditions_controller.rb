@@ -6,6 +6,7 @@ class ExpeditionsController < ApplicationController
   end
 
   def show
+    authorize! :read, @expedition
   end
 
   def new
@@ -23,10 +24,12 @@ class ExpeditionsController < ApplicationController
   end
 
   def edit
+    authorize! :update, @expedition
     @form = ExpeditionForm.new(@expedition.attributes.except('created_at','updated_at'))
   end
 
   def update
+    authorize! :update, @expedition
     @form = ExpeditionForm.new(@expedition.attributes.except('created_at','updated_at').merge(expedition_params))
     if @form.valid? && @expedition.update(@form.attributes)
       redirect_to @expedition, notice: _('Wyprawa została edytowana')
@@ -36,6 +39,7 @@ class ExpeditionsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @expedition
     @expedition.destroy
     redirect_to expeditions_url, notice: _('Wyprawa została usunięta')
   end

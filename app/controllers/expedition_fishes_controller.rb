@@ -3,10 +3,12 @@ class ExpeditionFishesController < ApplicationController
   before_filter :find_expedition_fish, only: [:edit, :update, :destroy]
 
   def new
+    authorize! :update, @expedition
     @form = ExpeditionFishForm.new
   end
 
   def create
+    authorize! :update, @expedition
     @form = ExpeditionFishForm.new(expedition_params)
     if @form.valid? && @expedition.expedition_fishes.create(@form.attributes)
       redirect_to @expedition, notice: _("Ryba została dodana")
@@ -16,10 +18,12 @@ class ExpeditionFishesController < ApplicationController
   end
 
   def edit
+    authorize! :update, @expedition
     @form = ExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at'))
   end
 
   def update
+    authorize! :update, @expedition
     @form = ExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at').merge(expedition_params))
     if @form.valid? && @expedition_fish.update(@form.attributes)
       redirect_to @expedition, notice: _("Ryby zostały edytowane")
@@ -29,6 +33,7 @@ class ExpeditionFishesController < ApplicationController
   end
 
   def destroy
+    authorize! :update, @expedition
     @expedition_fish.destroy
     redirect_to @expedition_fish.expedition
   end
