@@ -9,24 +9,26 @@ class ExpeditionsController < ApplicationController
   end
 
   def new
-    @expedition = current_user.expeditions.new
-  end
-
-  def edit
+    @form = ExpeditionForm.new
   end
 
   def create
-    @expedition = current_user.expeditions.new(expedition_params)
-
-    if @expedition.save
-      redirect_to @expedition, notice: _('Wyprawa została dodana')
+    @form = ExpeditionForm.new(expedition_params)
+    service = CreateExpeditionService.new(current_user, @form)
+    if service.call
+      redirect_to service.expedition, notice: _('Wyprawa została dodana')
     else
       render :new
     end
   end
 
+  def edit
+    @form = ExpeditionForm.new(@expedition.attributes.except('created_at','updated_at'))
+  end
+
   def update
-    if @expedition.update(expedition_params)
+    @form = ExpeditionForm.new(@expedition.attributes.except('created_at','updated_at').merge(expedition_params))
+    if @form.valid? && @expedition.update(@form.attributes)
       redirect_to @expedition, notice: _('Wyprawa została edytowana')
     else
       render :edit
