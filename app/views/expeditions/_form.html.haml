@@ -1,5 +1,12 @@
 = simple_form_for @form, as: :expedition, url: (@form.id ? expedition_path(@form.id) : expeditions_path), method: (@form.id ? :patch : :post) do |f|
   .col-md-6
+    - accessibility_checked = if @form.private
+      - 'private'
+    - elsif @form.hide_place
+      - 'hide_place'
+    - else
+      - 'public'
+    = f.input :accessibility, collection: [['public', _('Publiczna(dostępna dla wszystkich)')], ['private', _('Prywatna(tylko dla mnie)')], ['hide_place', _("Ukryte łowisko(publiczna z ukrytym łowiskiem)")]], label_method: :last, value_method: :first, as: :radio_buttons, checked: accessibility_checked, label: _("Udostępnienie wyprawy")
     = f.input :start_at, as: :datetime_picker, label: _("Rozpoczęcie wędkowania")
     = f.input :end_at, as: :datetime_picker, label: _("Zakończenie wędkowania")
     = f.input :place_id, collection: Place.all, label: _("Łowisko")

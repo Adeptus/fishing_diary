@@ -59,7 +59,8 @@ class ExpeditionsController < ApplicationController
       :pressure,
       :showers,
       :overcast,
-      :temperature
+      :temperature,
+      :accessibility
     )
   end
 end

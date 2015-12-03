@@ -11,10 +11,21 @@ class ExpeditionForm
     :pressure,
     :showers,
     :overcast,
-    :temperature
+    :temperature,
+    :accessibility,
+    :private,
+    :hide_place
   )
 
   validates :start_at, :end_at, :place_id, presence: true
+
+  def initialize(attributes = {})
+    if attributes['accessibility']
+      attributes[:private] = attributes['accessibility'] == 'private'
+      attributes[:hide_place] = attributes['accessibility'] == 'hide_place'
+    end
+    super(attributes)
+  end
 
   def attributes
     {
@@ -27,7 +38,9 @@ class ExpeditionForm
     pressure: pressure,
     showers: showers,
     overcast: overcast,
-    temperature: temperature
+    temperature: temperature,
+    private: private,
+    hide_place: hide_place
     }
   end
 end
