@@ -1,4 +1,4 @@
-class ExpeditionQuery
+class ExpeditionQuery < BaseQuery
   attr_accessor :filters
 
   def initialize(filters = {})
@@ -17,14 +17,5 @@ class ExpeditionQuery
 
   def prepare_query
     @results = Expedition
-  end
-
-  def ability_filter
-    return if filters[:user_id].blank?
-    @results = @results.where('private= ? OR user_id= ?', false, filters[:user_id])
-  end
-
-  def paginate_result
-    @results = @results.page(filters[:page])
   end
 end

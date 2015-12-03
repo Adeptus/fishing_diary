@@ -3,7 +3,7 @@ class PlacesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @places = PlaceQuery.new(current_user, places_params).results
+    @places = PlaceQuery.new(places_params).results
   end
 
   def show
@@ -71,7 +71,7 @@ class PlacesController < ApplicationController
       :search,
       :water_type,
       :place_type
-    )
+    ).merge(user_id: current_user.id)
   end
 
   def sort_column
