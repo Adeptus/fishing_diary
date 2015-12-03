@@ -2,7 +2,7 @@ class ExpeditionsController < ApplicationController
   before_action :set_expedition, only: [:show, :edit, :update, :destroy]
 
   def index
-    @expeditions = Expedition.all
+    @expeditions = ExpeditionQuery.new(expeditions_params).results
   end
 
   def show
@@ -62,5 +62,9 @@ class ExpeditionsController < ApplicationController
       :temperature,
       :accessibility
     )
+  end
+
+  def expeditions_params
+    params.permit().merge(user_id: current_user.id)
   end
 end
