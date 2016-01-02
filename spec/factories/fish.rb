@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :fish do
-    name "MyString"
-description "MyText"
+    sequence(:name) { |n| "fish#{n}" }
+    description "MyText"
   end
-
 end
