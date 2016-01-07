@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201230651) do
+ActiveRecord::Schema.define(version: 20160107215731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 20151201230651) do
     t.integer  "image_gallery_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "catch_caches", force: :cascade do |t|
+    t.integer  "fish_id"
+    t.integer  "count"
+    t.integer  "catchable_id"
+    t.string   "catchable_type"
+    t.string   "weight"
+    t.string   "length"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
