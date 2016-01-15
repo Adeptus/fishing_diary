@@ -19,6 +19,8 @@ describe CreateExpeditionFishService do
 
 
   context 'create CatchCache' do
+    let!(:expedition_fish) { create(:expedition_fish, length: 5, weight: 2.5, expedition: expedition, fish_id: form.fish_id)}
+
     it 'create CatchCache' do
       service = CreateExpeditionFishService.new(expedition, form)
       expect { service.call }.to change(CatchCache, :count).by(1)
@@ -28,21 +30,21 @@ describe CreateExpeditionFishService do
       service = CreateExpeditionFishService.new(expedition, form)
       service.call
       catch_cache = CatchCache.last
-      expect(catch_cache.count).to eq(100)
+      expect(catch_cache.count).to eq(101)
     end
 
     it 'set correct weight' do
       service = CreateExpeditionFishService.new(expedition, form)
       service.call
       catch_cache = CatchCache.last
-      expect(catch_cache.length).to eq('10-20')
+      expect(catch_cache.length).to eq('5-20')
     end
 
     it 'set correct length' do
       service = CreateExpeditionFishService.new(expedition, form)
       service.call
       catch_cache = CatchCache.last
-      expect(catch_cache.weight).to eq('1.6-2.0')
+      expect(catch_cache.weight).to eq('1.6-2.5')
     end
   end
 end
