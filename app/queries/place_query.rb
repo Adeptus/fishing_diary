@@ -3,10 +3,10 @@ class PlaceQuery < BaseQuery
 
   def results
     prepare_query
-    search_result
     water_type_filter
     place_type_filter
     ability_filter
+    search_result
     order_results
     paginate_result
 

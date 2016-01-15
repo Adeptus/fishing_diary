@@ -9,7 +9,7 @@ class BaseQuery
 
   def search_result(default = 'name')
     return if filters[:search].blank?
-    @results = @results.where('lower(?) LIKE ?', default, "%#{filters[:search].downcase}%")
+    @results = @results.where("CAST( lower(#{default}) AS text ) LIKE ?", "%#{filters[:search].downcase}%")
   end
 
   def ability_filter
