@@ -10,7 +10,8 @@ class ExpeditionFishesController < ApplicationController
   def create
     authorize! :update, @expedition
     @form = ExpeditionFishForm.new(expedition_params)
-    if @form.valid? && @expedition.expedition_fishes.create(@form.attributes)
+    service = CreateExpeditionFishService.new(@expedition, @form)
+    if service.call
       redirect_to @expedition, notice: _("Ryba została dodana")
     else
       render :new
@@ -55,7 +56,8 @@ class ExpeditionFishesController < ApplicationController
       :length,
       :weight,
       :bait_id,
-      :notes
-    )
+      :notes,
+      :count
+    ).merge(user_id: current_user.id)
   end
 end

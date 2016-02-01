@@ -1,18 +1,22 @@
 .page-header
-  %h1= _("Połowy")
+  %h2= _("Szczegółowe połowy")
+.row
+  = simple_form_for '', url: expedition_path(@expedition), method: :get, html: { class: "form-inline" } do |f|
+    = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
+    = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
+    = f.input :fish_id, collection: Fish.order(:name), label: _("Gatunek"), selected: params[:fish_id], include_blank: true, required: false
+    = f.submit _("Filtruj")
 %table.table.table-striped
   %thead
     %tr
-      %th= _("Gatunek")
-      %th= _('Długość(cm)')
-      %th= _('Waga(kg)')
+      %th= sortable 'length', _('Długość(cm)')
+      %th= sortable 'weight', _('Waga(kg)')
       /%th= _("Bait")
       %th= _('Notatka')
       %th= _('Akcje')
   %tbody
     - expedition_fishes.each do |fish|
       %tr
-        %td= fish.fish.name
         %td= "#{fish.length} cm"
         %td= "#{fish.weight} kg"
         /%td= fish.bait.full_name if fish.bait
@@ -20,3 +24,4 @@
         %td
           = link_to _("edytuj"), edit_expedition_expedition_fish_path(fish.expedition, fish), class: 'btn btn-xs btn-default'
           = link_to _("usuń"), expedition_expedition_fish_path(fish.expedition, fish), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
+= paginate @expedition_fishes

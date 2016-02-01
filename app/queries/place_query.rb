@@ -1,6 +1,4 @@
 class PlaceQuery < BaseQuery
-  attr_accessor :filters
-
   def results
     prepare_query
     water_type_filter

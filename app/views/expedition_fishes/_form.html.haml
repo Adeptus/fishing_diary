@@ -1,5 +1,5 @@
 = simple_form_for @form, as: :expedition_fish, url: (@form.id ? expedition_expedition_fish_path(@expedition, @form.id) : expedition_expedition_fishes_path), method: (@form.id ? :patch : :post) do |f|
-  =# f.input :count
+  = f.input :count
   = f.input :fish_id, collection: Fish.all, label: _("Gatunek ryby")
   = f.input :length, label: _("Długość(cm)")
   = f.input :weight, label: _("Waga(kg)")

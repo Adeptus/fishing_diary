@@ -20,5 +20,7 @@
 = link_to _("edytuj"), edit_expedition_path(@expedition), class: 'btn btn-default'
 = link_to _("usuń"), expedition_path(@expedition), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
 
-= render 'expedition_fishes/list', expedition_fishes: @expedition.expedition_fishes
+= render 'expedition_fishes/catch_caches', expedition_fishes: @expedition.catch_caches
+
+= render 'expedition_fishes/list', expedition_fishes: @expedition_fishes
 = link_to _("Dodaj ryby"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-primary'

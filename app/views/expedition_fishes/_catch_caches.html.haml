@@ -1,0 +1,19 @@
+.page-header
+  %h1= _("Połowy")
+%table.table.table-striped
+  %thead
+    %tr
+      %th= _("Ilość")
+      %th= _("Gatunek")
+      %th= _('Długość(cm)')
+      %th= _('Waga(kg)')
+      %th= _('Akcje')
+  %tbody
+    - expedition_fishes.each do |fish|
+      %tr.fish_row
+        %td= fish.count
+        %td= fish.fish.name
+        %td= "#{fish.length} cm"
+        %td= "#{fish.weight} kg"
+        %td
+          = link_to _("wyświetl szczegóły"), expedition_path(@expedition, fish_id: fish.fish_id), class: 'fish_details'

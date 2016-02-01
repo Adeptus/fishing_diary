@@ -1,5 +1,6 @@
 class ExpeditionsController < ApplicationController
   before_action :set_expedition, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   def index
     @expeditions = ExpeditionQuery.new(expeditions_params).results
@@ -7,6 +8,7 @@ class ExpeditionsController < ApplicationController
 
   def show
     authorize! :read, @expedition
+    @expedition_fishes = ExpeditionFishQuery.new(expedition_fish_params).results
   end
 
   def new
@@ -66,5 +68,22 @@ class ExpeditionsController < ApplicationController
 
   def expeditions_params
     params.permit().merge(user_id: current_user.id)
+  end
+
+  def expedition_fish_params
+    params.permit(
+      :fish_id,
+      :sort,
+      :direction,
+      :page
+    ).merge(expedition_id: @expedition.id)
+  end
+
+  def sort_column
+    ['length', 'weight', 'fish.name'].include?(params[:sort]) ? params[:sort] : "length"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

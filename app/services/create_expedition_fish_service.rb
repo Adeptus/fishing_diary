@@ -20,14 +20,13 @@ class CreateExpeditionFishService
       weight,
       notes,
       user_id,
-      bait_id,
       created_at,
       updated_at
     ) VALUES #{fishes_array.join(", ")}"
   end
 
   def fishes_array
-    @form.count.times.collect do
+    @form.count.to_i.times.collect do
       "('#{fish_attributes}')" # need format ('1','1','1','2','asdasdas','1','1','2016-01-02 20:17:21','2016-01-02 20:17:21')
     end
   end
@@ -40,7 +39,6 @@ class CreateExpeditionFishService
       random_weight,
       @form.notes.to_s,
       @form.user_id,
-      @form.bait_id,
       DateTime.now.strftime('%F %T'),
       DateTime.now.strftime('%F %T')
     ].join("','") # return 1','1','1','2','asdasdas','1','1','2016-01-02 20:17:21','2016-01-02 20:17:21
@@ -61,7 +59,7 @@ class CreateExpeditionFishService
       range = Range.new(elements[0].gsub(',','.').to_f, elements[1].gsub(',','.').to_f)
       rand(range)* (1/0.05).round.to_f / (1/0.05)
     else
-      @form.length
+      @form.weight.gsub(',','.').to_f
     end
   end
 

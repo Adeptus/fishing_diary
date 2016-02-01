@@ -8,15 +8,13 @@ describe CreateExpeditionFishService do
     length: '10-20',
     weight: '1.6-2',
     notes: 'asdasdas',
-    user_id: '1',
-    bait_id: '1'
+    user_id: '1'
   ) }
 
   it 'create 100 records' do
     service = CreateExpeditionFishService.new(expedition, form)
     expect { service.call }.to change(ExpeditionFish, :count).by(100)
   end
-
 
   context 'create CatchCache' do
     let!(:expedition_fish) { create(:expedition_fish, length: 5, weight: 2.5, expedition: expedition, fish_id: form.fish_id)}

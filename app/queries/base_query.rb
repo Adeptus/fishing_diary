@@ -18,11 +18,9 @@ class BaseQuery
   end
 
   def order_results(default = 'name')
-    if filters[:sort]
-      @results = @results.order(filters[:sort] + " " + filters[:direction])
-    else
-      @results = @results.order(default)
-    end
+    filters[:direction] ||= 'desc'
+    filters[:sort] ||= default
+    @results = @results.order(filters[:sort] + " " + filters[:direction])
   end
 
   def paginate_result

@@ -1,6 +1,4 @@
 class FishQuery < BaseQuery
-  attr_accessor :filters
-
   def results
     prepare_query
     search_result
