@@ -63,19 +63,7 @@ class CreateExpeditionFishService
     end
   end
 
-  def update_catch_cache #TODO: move to UpdateCatchCacheService
-    cache = CatchCache.where(fish_id: @form.fish_id, catchable: @expedition).first_or_initialize
-    fishes = ExpeditionFish.where(expedition_id: @expedition.id, fish_id: @form.fish_id)
-    length_max = fishes.maximum(:length)
-    length_min = fishes.minimum(:length)
-    weight_max = fishes.maximum(:weight)
-    weight_min = fishes.minimum(:weight)
-    cache.update(
-      fish_id: @form.fish_id,
-      count: fishes.count,
-      length: "#{length_min}-#{length_max}",
-      weight: "#{weight_min}-#{weight_max}",
-      catchable: @expedition
-    )
+  def update_catch_cache
+    UpdateCatchCacheService.new(@form.fish_id, @expedition).call
   end
 end
