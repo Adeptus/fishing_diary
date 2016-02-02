@@ -34,9 +34,24 @@ class ExpeditionFishesController < ApplicationController
   end
 
   def destroy
-    authorize! :update, @expedition
-    @expedition_fish.destroy
-    redirect_to @expedition_fish.expedition
+    authorize! :destroy, @expedition
+    service = DestroyExpeditionFishesService.new(@expedition, [@expedition_fish.id])
+    if service.call
+      redirect_to @expedition, notice: _('Ryby została usuięte')
+    else
+      redirect_to @expedition, alert: _('Nie udało się usunąć ryby')
+    end
+  end
+
+  def destroy_selected
+    authorize! :destroy, @expedition
+    service = DestroyExpeditionFishesService.new(@expedition, params[:fish_ids])
+    if service.call
+      redirect_to @expedition, notice: _('Zaznaczone ryby zostały usuięte')
+    else
+      redirect_to @expedition, alert: _('Nie udało się usunąć złapanych ryb')
+    end
+
   end
 
   private

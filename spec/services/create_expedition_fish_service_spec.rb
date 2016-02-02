@@ -16,7 +16,7 @@ describe CreateExpeditionFishService do
     expect { service.call }.to change(ExpeditionFish, :count).by(100)
   end
 
-  context 'create CatchCache' do
+  context 'create CatchCache' do #move tests to UpdateCatchCacheService specs
     let!(:expedition_fish) { create(:expedition_fish, length: 5, weight: 2.5, expedition: expedition, fish_id: form.fish_id)}
 
     it 'create CatchCache' do

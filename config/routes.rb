@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :bait_types
   resources :fish
   resources :expeditions do
-    resources :expedition_fishes, except: [:index, :show]
+    resources :expedition_fishes, except: [:index, :show] do
+      patch :destroy_selected, on: :collection
+    end
   end
   resources :places
 

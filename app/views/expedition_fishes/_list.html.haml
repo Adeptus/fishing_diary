@@ -6,22 +6,35 @@
     = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
     = f.input :fish_id, collection: Fish.order(:name), label: _("Gatunek"), selected: params[:fish_id], include_blank: true, required: false
     = f.submit _("Filtruj")
-%table.table.table-striped
-  %thead
-    %tr
-      %th= sortable 'length', _('Długość(cm)')
-      %th= sortable 'weight', _('Waga(kg)')
-      /%th= _("Bait")
-      %th= _('Notatka')
-      %th= _('Akcje')
-  %tbody
-    - expedition_fishes.each do |fish|
+
+= form_tag destroy_selected_expedition_expedition_fishes_path(@expedition), method: :patch do
+  %table.table.table-striped
+    %thead
       %tr
-        %td= "#{fish.length} cm"
-        %td= "#{fish.weight} kg"
-        /%td= fish.bait.full_name if fish.bait
-        %td= truncate(fish.notes)
-        %td
-          = link_to _("edytuj"), edit_expedition_expedition_fish_path(fish.expedition, fish), class: 'btn btn-xs btn-default'
-          = link_to _("usuń"), expedition_expedition_fish_path(fish.expedition, fish), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
-= paginate @expedition_fishes
+        %th
+          %input{type: :checkbox, id: :select_all}
+          %label{for:'select_all'}
+        %th= sortable 'fish.name', _('Gatunek')
+        %th= sortable 'length', _('Długość(cm)')
+        %th= sortable 'weight', _('Waga(kg)')
+        /%th= _("Bait")
+        %th= _('Notatka')
+        %th= _('Akcje')
+    %tbody
+      - expedition_fishes.each do |fish|
+        %tr
+          %td.checkbox-container
+            = check_box_tag "fish_ids[]", fish.id, false, class: 'table_checkbox', id: "news_checkbox_#{fish.id}"
+            = label_tag "news_checkbox_#{fish.id}", ''
+          %td= fish.fish.name
+          %td= "#{fish.length} cm"
+          %td= "#{fish.weight} kg"
+          /%td= fish.bait.full_name if fish.bait
+          %td= truncate(fish.notes)
+          %td
+            = link_to _("edytuj"), edit_expedition_expedition_fish_path(fish.expedition, fish), class: 'btn btn-xs btn-default'
+            = link_to _("usuń"), expedition_expedition_fish_path(fish.expedition, fish), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
+  .row
+    .col-md-3
+      = submit_tag _("Usuń zaznaczone"), class:'btn btn-lg'
+  = paginate @expedition_fishes
