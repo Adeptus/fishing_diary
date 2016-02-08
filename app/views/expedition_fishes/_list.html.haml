@@ -14,9 +14,11 @@
         %th
           %input{type: :checkbox, id: :select_all}
           %label{for:'select_all'}
+        %th
         %th= sortable 'fish.name', _('Gatunek')
         %th= sortable 'length', _('Długość(cm)')
         %th= sortable 'weight', _('Waga(kg)')
+        %th= sortable 'fishing_type', _('Metoda połowu')
         /%th= _("Bait")
         %th= _('Notatka')
         %th= _('Akcje')
@@ -26,9 +28,11 @@
           %td.checkbox-container
             = check_box_tag "fish_ids[]", fish.id, false, class: 'table_checkbox', id: "news_checkbox_#{fish.id}"
             = label_tag "news_checkbox_#{fish.id}", ''
+          %td= image_tag fish.image.thumb
           %td= fish.fish.name
           %td= "#{fish.length} cm"
           %td= "#{fish.weight} kg"
+          %td= fish.fishing_type.try(:text)
           /%td= fish.bait.full_name if fish.bait
           %td= truncate(fish.notes)
           %td

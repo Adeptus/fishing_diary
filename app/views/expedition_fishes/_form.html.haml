@@ -1,8 +1,12 @@
 = simple_form_for @form, as: :expedition_fish, url: (@form.id ? expedition_expedition_fish_path(@expedition, @form.id) : expedition_expedition_fishes_path), method: (@form.id ? :patch : :post) do |f|
-  = f.input :count
+  = f.input :expedition_id, as: :hidden, input_html: { value: @expedition.id }
+  - unless @form.id
+    = f.input :count
   = f.input :fish_id, collection: Fish.all, label: _("Gatunek ryby")
   = f.input :length, label: _("Długość(cm)")
   = f.input :weight, label: _("Waga(kg)")
+  = f.input :fishing_type, collection: FishingType.select_options, label: _("Metoda połowu")
+  = f.input :image, label: _("Zdjęcie"), as: :file
   =# f.input :bait_id, collection: Bait.all.map{ |b| [b.full_name, b.id] }, label: _("Bait")
   = f.input :notes, label: _("Opis")
   = f.submit _("Zapisz"), :class => 'btn btn-primary'

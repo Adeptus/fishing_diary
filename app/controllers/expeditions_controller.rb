@@ -80,7 +80,7 @@ class ExpeditionsController < ApplicationController
   end
 
   def sort_column
-    ['length', 'weight', 'fish.name'].include?(params[:sort]) ? params[:sort] : "length"
+    ['length', 'weight', 'fish.name', 'fishing_type'].include?(params[:sort]) ? params[:sort] : "length"
   end
 
   def sort_direction

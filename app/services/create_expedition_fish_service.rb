@@ -6,6 +6,7 @@ class CreateExpeditionFishService
 
   def call
     return false unless @form.valid?
+    save_image
     create_expedition_fishes
     update_catch_cache
   end
@@ -20,6 +21,8 @@ class CreateExpeditionFishService
       weight,
       notes,
       user_id,
+      fishing_type,
+      image,
       created_at,
       updated_at
     ) VALUES #{fishes_array.join(", ")}"
@@ -39,6 +42,8 @@ class CreateExpeditionFishService
       random_weight,
       @form.notes.to_s,
       @form.user_id,
+      @form.fishing_type,
+      load_image,
       DateTime.now.strftime('%F %T'),
       DateTime.now.strftime('%F %T')
     ].join("','") # return 1','1','1','2','asdasdas','1','1','2016-01-02 20:17:21','2016-01-02 20:17:21
@@ -65,5 +70,16 @@ class CreateExpeditionFishService
 
   def update_catch_cache
     UpdateCatchCacheService.new(@form.fish_id, @expedition).call
+  end
+
+  def save_image
+    return unless @form.image
+    uploader = ImageUploader.new(ExpeditionFish.new({expedition_id: @form.expedition_id}), :image)
+    uploader.store!(@form.image)
+  end
+
+  def load_image
+    return '' unless @form.image
+    @form.image.original_filename
   end
 end

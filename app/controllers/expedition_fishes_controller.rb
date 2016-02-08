@@ -4,12 +4,12 @@ class ExpeditionFishesController < ApplicationController
 
   def new
     authorize! :update, @expedition
-    @form = ExpeditionFishForm.new
+    @form = CreateExpeditionFishForm.new
   end
 
   def create
     authorize! :update, @expedition
-    @form = ExpeditionFishForm.new(expedition_params)
+    @form = CreateExpeditionFishForm.new(expedition_params)
     service = CreateExpeditionFishService.new(@expedition, @form)
     if service.call
       redirect_to @expedition, notice: _("Ryba została dodana")
@@ -20,12 +20,12 @@ class ExpeditionFishesController < ApplicationController
 
   def edit
     authorize! :update, @expedition
-    @form = ExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at'))
+    @form = UpdateExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at', 'expedition_id'))
   end
 
   def update
     authorize! :update, @expedition
-    @form = ExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at').merge(expedition_params))
+    @form = UpdateExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at', 'expedition_id').merge(expedition_params))
     if @form.valid? && @expedition_fish.update(@form.attributes)
       redirect_to @expedition, notice: _("Ryby zostały edytowane")
     else
@@ -72,7 +72,9 @@ class ExpeditionFishesController < ApplicationController
       :weight,
       :bait_id,
       :notes,
-      :count
+      :count,
+      :fishing_type,
+      :image
     ).merge(user_id: current_user.id)
   end
 end

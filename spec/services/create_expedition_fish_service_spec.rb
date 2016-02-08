@@ -8,7 +8,9 @@ describe CreateExpeditionFishService do
     length: '10-20',
     weight: '1.6-2',
     notes: 'asdasdas',
-    user_id: '1'
+    user_id: '1',
+    image: nil,
+    fishing_type: nil
   ) }
 
   it 'create 100 records' do
