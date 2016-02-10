@@ -7,5 +7,5 @@ class ExpeditionFish < ActiveRecord::Base
   belongs_to :bait
 
   mount_uploader :image, ImageUploader
-  classy_enum_attr :fishing_type
+  classy_enum_attr :fishing_type, allow_blank: true, allow_nil: true
 end

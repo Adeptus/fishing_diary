@@ -8,7 +8,7 @@
   = l @expedition.end_at, format: :long if @expedition.end_at
 %p
   %strong= _("Łowisko:")
-  = @expedition.place.name
+  = link_to @expedition.place.name, @expedition.place
 %p
   %strong= _("Opis:")
   %br

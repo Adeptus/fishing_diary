@@ -8,6 +8,7 @@
     %tr
       %th= _("Data")
       %th= _("Łowisko")
+      %th= _("Ryby")
       %th= _("Ciśnienie")
       %th= _("Opady")
       %th= _("Zachmurzenie")
@@ -20,7 +21,11 @@
           .clearfix
           = link_to _("edytuj"), edit_expedition_path(expedition), class: 'btn btn-default btn-xs'
           = link_to _("usuń"), expedition_path(expedition), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
-        %td= expedition.place.name
+        %td= link_to expedition.place.name, expedition.place
+        %td
+          - expedition.catch_caches.order('count desc').each do |catch_cache|
+            %span= "#{catch_cache.fish.name}(#{catch_cache.count}) |"
+
         %td= expedition.pressure
         %td= expedition.showers
         %td= expedition.overcast

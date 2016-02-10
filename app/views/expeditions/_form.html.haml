@@ -11,10 +11,27 @@
     = f.input :end_at, as: :datetime_picker, label: _("Zakończenie wędkowania")
     = f.input :place_id, collection: Place.all, label: _("Łowisko")
   .col-md-6
-    = f.input :pressure, label: _("Warunki pogodowe:"), placeholder: _("Ciśnienie")
-    = f.input :showers, label: false, placeholder: _("Opady")
-    = f.input :overcast, label: false, placeholder: _("Zachmurzenie")
-    = f.input :temperature, label: false, placeholder: _("Temperatura")
+    %h4= _("Warunki pogodowe:")
+    .row
+      .col-md-6
+        = f.input :pressure, label: _("Ciśnienie(hPa)"), as: :integer, input_html: { min: '950', max: '1060', step: '5' }
+      .col-md-6
+        = f.input :pressure_type, label: _("Trend"), collection: PressureType.select_options, include_blank: true
+    .row
+      .col-md-6
+        = f.input :temperature, label: _("Temperatura(°C)"), as: :integer, input_html: { min: '-30', max: '40' }
+      .col-md-6
+        = f.input :water_temperature, label: _("Temperatura wody(°C)"), as: :integer, input_html: { min: '0', max: '30' }
+    .row
+      .col-md-6
+        = f.input :wind_strength, label: _("Siła wiatru(km/h)"), as: :integer, input_html: { min: '0', max: '120', step: '5' }
+      .col-md-6
+        = f.input :wind_direction, collection: WindDirection.select_options, include_blank: true, label: _("Kierunek wiatru")
+    .row
+      .col-md-6
+        = f.input :showers, label: _("Opady"), collection: Showers.select_options, include_blank: true
+      .col-md-6
+        = f.input :overcast, label: _("Zachmurzenie"), collection: Overcast.select_options, include_blank: true
   .clearfix
   = f.input :notes, as: :ckeditor, label: _("Opis")
   = f.submit _("Zapisz"), class: 'btn btn-primary'

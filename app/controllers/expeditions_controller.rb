@@ -62,7 +62,12 @@ class ExpeditionsController < ApplicationController
       :showers,
       :overcast,
       :temperature,
-      :accessibility
+      :accessibility,
+      :water_temperature,
+      :activity_type,
+      :wind_strength,
+      :wind_direction,
+      :pressure_type
     )
   end
 
@@ -75,7 +80,8 @@ class ExpeditionsController < ApplicationController
       :fish_id,
       :sort,
       :direction,
-      :page
+      :page,
+      :fishing_type
     ).merge(expedition_id: @expedition.id)
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208215032) do
+ActiveRecord::Schema.define(version: 20160210212414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,15 +93,20 @@ ActiveRecord::Schema.define(version: 20160208215032) do
     t.datetime "end_at"
     t.integer  "place_id"
     t.text     "notes"
-    t.string   "pressure"
     t.string   "showers"
     t.string   "overcast"
     t.integer  "temperature"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "user_id"
-    t.boolean  "private",     default: false
-    t.boolean  "hide_place",  default: false
+    t.boolean  "private",           default: false
+    t.boolean  "hide_place",        default: false
+    t.integer  "water_temperature"
+    t.string   "activity_type"
+    t.integer  "wind_strength"
+    t.string   "wind_direction"
+    t.string   "pressure_type"
+    t.integer  "pressure"
   end
 
   create_table "fish", force: :cascade do |t|
