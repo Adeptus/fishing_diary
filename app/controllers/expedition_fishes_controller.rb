@@ -26,7 +26,8 @@ class ExpeditionFishesController < ApplicationController
   def update
     authorize! :update, @expedition
     @form = UpdateExpeditionFishForm.new(@expedition_fish.attributes.except('created_at','updated_at', 'expedition_id').merge(expedition_params))
-    if @form.valid? && @expedition_fish.update(@form.attributes)
+    service = UpdateExpeditionFishService.new(@expedition_fish, @form)
+    if service.call
       redirect_to @expedition, notice: _("Ryby zostały edytowane")
     else
       render :edit
