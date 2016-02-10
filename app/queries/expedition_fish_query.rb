@@ -2,6 +2,7 @@ class ExpeditionFishQuery < BaseQuery
   def results
     prepare_query
     fish_filter
+    fishing_type_filter
     expedition_filter
     order_results("length")
     paginate_result
@@ -13,6 +14,11 @@ class ExpeditionFishQuery < BaseQuery
 
   def prepare_query
     @results = ExpeditionFish.joins(:fish)
+  end
+
+  def fishing_type_filter
+    return if filters[:fishing_type].blank?
+    @results = @results.where(fishing_type: filters[:fishing_type])
   end
 
   def fish_filter

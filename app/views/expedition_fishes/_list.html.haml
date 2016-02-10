@@ -5,6 +5,7 @@
     = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
     = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
     = f.input :fish_id, collection: Fish.order(:name), label: _("Gatunek"), selected: params[:fish_id], include_blank: true, required: false
+    = f.input :fishing_type, collection: FishingType.select_options, label: _("Metoda połowu"), selected: params[:fishing_type], include_blank: true, required: false
     = f.submit _("Filtruj")
 
 = form_tag destroy_selected_expedition_expedition_fishes_path(@expedition), method: :patch do
