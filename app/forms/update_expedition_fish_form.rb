@@ -15,8 +15,8 @@ class UpdateExpeditionFishForm
   )
 
   validates :fish_id, :length, :weight, presence: true
-  validates :length, format: /\A[0-9]{1,3}(-[0-9]{1,3})?\z/
-  validates :weight, format: /\A[0-9]{1,2}([,.]{1}[0-9]{1,2})?(-[0-9]{1,2})?([,.]{1}[0-9]{1,2})?\z/
+  validates :length, format: /\A[0-9]{1,3}\z/
+  validates :weight, format: /\A[0-9]{1,2}([,.]{1}[0-9]{1,2})?\z/
 
   def attributes
     {
