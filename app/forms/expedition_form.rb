@@ -24,21 +24,25 @@ class ExpeditionForm
 
   validates :start_at, :end_at, :place_id, presence: true
   validates :temperature, numericality: {
+    allow_blank: true,
     only_integer: true,
     greater_than: -30,
     less_than: 50
   }
   validates :water_temperature, numericality: {
+    allow_blank: true,
     only_integer: true,
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 35
   }
   validates :pressure, numericality: {
+    allow_blank: true,
     only_integer: true,
     greater_than: 950,
     less_than: 1060
   }
   validates :wind_strength, numericality: {
+    allow_blank: true,
     only_integer: true,
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 120
