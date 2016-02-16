@@ -20,4 +20,5 @@
 //= require underscore
 //= require gmaps/google
 //= require ckeditor/init
+//= require moment/pl
 //= require_tree .
