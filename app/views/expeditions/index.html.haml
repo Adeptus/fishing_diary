@@ -6,13 +6,17 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= _("Data")
-      %th= _("Łowisko")
+      %th= sortable 'start_at', _("Data")
+      %th= sortable 'places.name', _("Łowisko")
       %th= _("Ryby")
-      %th= _("Ciśnienie")
+      %th= _("Ciśnienie(hPa)")
+      %th= _("Trend")
+      %th= _("Temperatura(°C)")
+      %th= _("Temperatura wody(°C)")
+      %th= _("Siła wiatru(km/h)")
+      %th= _("Kierunek wiatru")
       %th= _("Opady")
       %th= _("Zachmurzenie")
-      %th= _("Temperatura")
   %tbody
     - @expeditions.each do |expedition|
       %tr
@@ -27,6 +31,10 @@
             %span= "#{catch_cache.fish.name}(#{catch_cache.count}) |"
 
         %td= expedition.pressure
-        %td= expedition.showers
-        %td= expedition.overcast
+        %td= expedition.pressure_type.try(:text)
         %td= expedition.temperature
+        %td= expedition.water_temperature
+        %td= expedition.wind_strength
+        %td= expedition.wind_direction.try(:text)
+        %td= expedition.showers.try(:text)
+        %td= expedition.overcast.try(:text)

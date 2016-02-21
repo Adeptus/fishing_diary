@@ -72,7 +72,7 @@ class ExpeditionsController < ApplicationController
   end
 
   def expeditions_params
-    params.permit().merge(user_id: current_user.id)
+    params.permit(:start_at, :direction, :sort).merge(user_id: current_user.id)
   end
 
   def expedition_fish_params
@@ -86,7 +86,11 @@ class ExpeditionsController < ApplicationController
   end
 
   def sort_column
-    ['length', 'weight', 'fish.name', 'fishing_type'].include?(params[:sort]) ? params[:sort] : "length"
+    if params[:action] == "index"
+      ['start_at', 'places.name'].include?(params[:sort]) ? params[:sort] : "start_at"
+    elsif params[:action] == 'show'
+      ['length', 'weight', 'fish.name', 'fishing_type'].include?(params[:sort]) ? params[:sort] : "length"
+    end
   end
 
   def sort_direction
