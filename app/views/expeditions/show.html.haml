@@ -1,14 +1,49 @@
 .page-header
   %h1= _("Wyprawa")
-%p
-  %strong= _("Rozpoczęcie wędkowania:")
-  = l @expedition.start_at, format: :long if @expedition.start_at
-%p
-  %strong= _("Zakończenie wędkowania:")
-  = l @expedition.end_at, format: :long if @expedition.end_at
-%p
-  %strong= _("Łowisko:")
-  = link_to @expedition.place.name, @expedition.place
+.row
+  .col-md-6
+    %p
+      %strong= _("Rozpoczęcie wędkowania:")
+      = l @expedition.start_at, format: :long if @expedition.start_at
+    %p
+      %strong= _("Zakończenie wędkowania:")
+      = l @expedition.end_at, format: :long if @expedition.end_at
+    %p
+      %strong= _("Łowisko:")
+      = link_to @expedition.place.name, @expedition.place
+  .col-md-6
+    .row
+      .col-md-6
+        %b=_("Ciśnienie")
+        = @expedition.pressure
+        hPa
+      .col-md-6
+        %b=_("Trend")
+        = @expedition.pressure_type.text
+    .row
+      .col-md-6
+        %b=_("Temperatura")
+        = @expedition.temperature
+        °C
+      .col-md-6
+        %b=_("Temperatura wody")
+        = @expedition.water_temperature
+        °C
+    .row
+      .col-md-6
+        %b=_("Siła wiatru")
+        = @expedition.wind_strength
+        km/h
+      .col-md-6
+        %b=_("Kierunek wiatru")
+        = @expedition.wind_direction.text
+    .row
+      .col-md-6
+        %b=_("Opady")
+        = @expedition.showers.text
+      .col-md-6
+        %b=_("Zachmurzenie")
+        = @expedition.overcast.text
 %p
   %strong= _("Opis:")
   %br
