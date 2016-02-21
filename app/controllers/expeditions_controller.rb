@@ -72,7 +72,13 @@ class ExpeditionsController < ApplicationController
   end
 
   def expeditions_params
-    params.permit(:start_at, :direction, :sort).merge(user_id: current_user.id)
+    params.permit(
+      :start_at,
+      :direction,
+      :sort,
+      :start_at_from,
+      :start_at_to
+    ).merge(user_id: current_user.id)
   end
 
   def expedition_fish_params

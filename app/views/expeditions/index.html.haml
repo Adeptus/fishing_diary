@@ -3,6 +3,15 @@
 .row
   .col-md-3
     = link_to _("Dodaj wyprawę"), new_expedition_path, class: 'btn btn-primary'
+  .col-md-9
+    = simple_form_for '', url: expeditions_path, method: :get, html: { class: "form-inline" } do |f|
+      = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
+      = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
+      = f.input :search, label: false, placeholder: _("Szukaj"), input_html: { value: params[:search]}
+      .row
+        = f.input :start_at_from, as: :datetime_picker, label: _("Wędkowanie od"), input_html: { value: params[:start_at_from]}
+        = f.input :start_at_to, as: :datetime_picker, label: _("do"), input_html: { value: params[:start_at_to]}
+      = f.submit _("Filtruj")
 %table.table.table-striped
   %thead
     %tr
