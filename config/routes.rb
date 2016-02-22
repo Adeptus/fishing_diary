@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
   end
   resources :places
+  resources :catch_methods
 
   root to: 'dashboard#index'
 end

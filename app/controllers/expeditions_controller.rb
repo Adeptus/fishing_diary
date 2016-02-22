@@ -90,7 +90,7 @@ class ExpeditionsController < ApplicationController
       :sort,
       :direction,
       :page,
-      :fishing_type
+      :method_id
     ).merge(expedition_id: @expedition.id)
   end
 
@@ -98,7 +98,7 @@ class ExpeditionsController < ApplicationController
     if params[:action] == "index"
       ['start_at', 'places.name', 'users.username'].include?(params[:sort]) ? params[:sort] : "start_at"
     elsif params[:action] == 'show'
-      ['length', 'weight', 'fish.name', 'fishing_type'].include?(params[:sort]) ? params[:sort] : "length"
+      ['length', 'weight', 'fish.name', 'method.name'].include?(params[:sort]) ? params[:sort] : "length"
     end
   end
 

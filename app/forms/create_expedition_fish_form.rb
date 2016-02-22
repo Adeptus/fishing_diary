@@ -10,7 +10,7 @@ class CreateExpeditionFishForm
     :weight,
     :bait_id,
     :notes,
-    :fishing_type,
+    :method_id,
     :image,
     :expedition_id
   )

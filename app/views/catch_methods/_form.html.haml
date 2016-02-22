@@ -1,0 +1,6 @@
+= simple_form_for @catch_method do |f|
+  = f.input :name, label: _('Nazwa')
+  = f.input :fishing_type, collection: FishingType.select_options, label: _('Rodzaj')
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit _('Zapisz'), class: 'btn btn-primary'

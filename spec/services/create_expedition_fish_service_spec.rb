@@ -10,7 +10,7 @@ describe CreateExpeditionFishService do
     notes: 'asdasdas',
     user_id: '1',
     image: nil,
-    fishing_type: nil
+    method_id: 1
   ) }
 
   it 'create 100 records' do

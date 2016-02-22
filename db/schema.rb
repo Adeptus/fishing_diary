@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221230708) do
+ActiveRecord::Schema.define(version: 20160222211613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 20160221230708) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "catch_methods", force: :cascade do |t|
+    t.string   "name"
+    t.string   "fishing_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -84,8 +91,8 @@ ActiveRecord::Schema.define(version: 20160221230708) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.integer  "user_id"
-    t.string   "fishing_type"
     t.string   "image"
+    t.integer  "method_id"
   end
 
   create_table "expeditions", force: :cascade do |t|

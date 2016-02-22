@@ -8,6 +8,8 @@
         %li= link_to _("Łowiska"), places_path
         %li= link_to _("Wyprawy"), expeditions_path
         %li= link_to _("Ryby"), fish_index_path
+        - if can?(:read, CatchMethod)
+          %li= link_to _("Metody Połowu"), catch_methods_path
 %ul.nav.nav-pills.pull-right
   - if user_signed_in?
     %li= link_to _("Wyloguj"), destroy_user_session_path, :method => :delete

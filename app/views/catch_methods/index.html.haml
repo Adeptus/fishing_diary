@@ -1,0 +1,22 @@
+.page-header
+  = link_to new_catch_method_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    =_("Dodaj")
+  %h1 Listing catch_methods
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= sortable 'name', _("Nazwa")
+      %th= _("Rodzaj")
+      %th
+      %th
+
+  %tbody
+    - @catch_methods.each do |catch_method|
+      %tr
+        %td= link_to catch_method.name, catch_method
+        %td= catch_method.fishing_type
+        %td
+          = link_to _('Edytuj'), edit_catch_method_path(catch_method)
+          = link_to _('Usuń'), catch_method, data: { confirm: 'Czy jesteś pewien? Usunie to wszystkie relacje powiązane z tą metodą!' }, method: :delete

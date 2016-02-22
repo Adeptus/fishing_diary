@@ -21,7 +21,7 @@ class CreateExpeditionFishService
       weight,
       notes,
       user_id,
-      fishing_type,
+      method_id,
       image,
       created_at,
       updated_at
@@ -42,7 +42,7 @@ class CreateExpeditionFishService
       random_weight,
       @form.notes.to_s,
       @form.user_id,
-      @form.fishing_type,
+      @form.method_id,
       load_image,
       DateTime.now.strftime('%F %T'),
       DateTime.now.strftime('%F %T')

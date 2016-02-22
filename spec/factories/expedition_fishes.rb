@@ -6,7 +6,7 @@ FactoryGirl.define do
     weight 1
     bait_id 1
     notes "MyText"
-    fishing_type 'float'
+    method_id 1
   end
 
 end

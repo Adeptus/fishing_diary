@@ -1,11 +1,9 @@
 class ExpeditionFish < ActiveRecord::Base
-  include ClassyEnum::ActiveRecord
-
   belongs_to :expedition
   belongs_to :fish
   belongs_to :user
   belongs_to :bait
+  belongs_to :method, class_name: 'CatchMethod'
 
   mount_uploader :image, ImageUploader
-  classy_enum_attr :fishing_type, allow_blank: true, allow_nil: true
 end

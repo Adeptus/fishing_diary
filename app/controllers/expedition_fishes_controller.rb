@@ -74,7 +74,7 @@ class ExpeditionFishesController < ApplicationController
       :bait_id,
       :notes,
       :count,
-      :fishing_type,
+      :method_id,
       :image
     ).merge(user_id: current_user.id)
   end

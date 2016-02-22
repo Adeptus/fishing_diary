@@ -5,7 +5,7 @@
     = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
     = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
     = f.input :fish_id, collection: Fish.order(:name), label: _("Gatunek"), selected: params[:fish_id], include_blank: true, required: false
-    = f.input :fishing_type, collection: FishingType.select_options, label: _("Metoda połowu"), selected: params[:fishing_type], include_blank: true, required: false
+    = f.input :method_id, collection: CatchMethod.all, label: _("Metoda połowu"), selected: params[:method_id], include_blank: true, required: false
     = f.submit _("Filtruj")
 
 = form_tag destroy_selected_expedition_expedition_fishes_path(@expedition), method: :patch do
@@ -19,7 +19,7 @@
         %th= sortable 'fish.name', _('Gatunek')
         %th= sortable 'length', _('Długość(cm)')
         %th= sortable 'weight', _('Waga(kg)')
-        %th= sortable 'fishing_type', _('Metoda połowu')
+        %th= sortable 'method.name', _('Metoda połowu')
         /%th= _("Bait")
         %th= _('Notatka')
         %th= _('Akcje')
@@ -33,7 +33,7 @@
           %td= fish.fish.name
           %td= "#{fish.length} cm"
           %td= "#{fish.weight} kg"
-          %td= fish.fishing_type.try(:text)
+          %td= fish.method.try(:name)
           /%td= fish.bait.full_name if fish.bait
           %td= truncate(fish.notes)
           %td

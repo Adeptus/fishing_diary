@@ -1,0 +1,14 @@
+.page-header
+  = link_to catch_methods_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    = _("cofnij")
+  = link_to edit_catch_method_path(@catch_method), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    = _("edytuj")
+  %h1= @catch_method.name
+
+%dl.dl-horizontal
+  %dt= _("Nazwa:")
+  %dd= @catch_method.name
+  %dt= _("Rodzaj:")
+  %dd= @catch_method.fishing_type

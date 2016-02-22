@@ -10,7 +10,7 @@ class ExpeditionFishForm
     :weight,
     :bait_id,
     :notes,
-    :fishing_type
+    :method_id
   )
 
   validates :fish_id, :count, :length, :weight, presence: true
@@ -26,7 +26,7 @@ class ExpeditionFishForm
       weight: weight,
       bait_id: bait_id,
       notes: notes,
-      fishing_type: fishing_type
+      method_id: method_id
     }
   end
 end
