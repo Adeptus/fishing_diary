@@ -4,6 +4,7 @@ class ExpeditionsController < ApplicationController
 
   def index
     @expeditions = ExpeditionQuery.new(expeditions_params).results
+    @presenter = ExpeditionsPresenter.new
   end
 
   def show
@@ -80,7 +81,8 @@ class ExpeditionsController < ApplicationController
       :start_at_to,
       :place_id,
       :user_id,
-      fish_ids: []
+      fish_ids: [],
+      method_ids: []
     ).merge(current_user_id: current_user.id)
   end
 

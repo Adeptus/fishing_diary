@@ -1,12 +1,15 @@
 class UpdateCatchCacheService
-  def initialize(fish_id, catchable)
+  def initialize(fish_id, catchable, method_ids = [])
     @fish_id = fish_id
     @catchable = catchable
+    @method_ids = method_ids
   end
 
   def call
     find_expedition_fishes
-    update_cache
+    find_methods.each do |method_id|
+      update_cache(method_id)
+    end
   end
 
   private
@@ -15,8 +18,19 @@ class UpdateCatchCacheService
     @fishes = ExpeditionFish.where(expedition_id: @catchable.id, fish_id: @fish_id)
   end
 
-  def update_cache
-    cache = CatchCache.where(fish_id: @fish_id, catchable: @catchable).first_or_initialize
+  def find_methods
+    @method_ids = @fishes.pluck(:method_id) if @method_ids == :all
+    results = [nil] + @method_ids
+    results.uniq
+  end
+
+  def update_cache(method_id)
+    cache = CatchCache.where(
+      fish_id: @fish_id,
+      catchable: @catchable,
+      method_id: method_id
+    ).first_or_initialize
+
     cache.update(
       fish_id: @fish_id,
       count: @fishes.count,

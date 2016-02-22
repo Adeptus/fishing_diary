@@ -69,7 +69,7 @@ class CreateExpeditionFishService
   end
 
   def update_catch_cache
-    UpdateCatchCacheService.new(@form.fish_id, @expedition).call
+    UpdateCatchCacheService.new(@form.fish_id, @expedition, [@form.method_id]).call
   end
 
   def save_image

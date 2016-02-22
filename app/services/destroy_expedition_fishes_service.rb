@@ -23,7 +23,7 @@ class DestroyExpeditionFishesService
 
   def update_catch_cache
     @fish_ids.each do |fish_id|
-      UpdateCatchCacheService.new(fish_id, @expedition).call
+      UpdateCatchCacheService.new(fish_id, @expedition, :all).call
     end
   end
 end

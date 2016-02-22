@@ -6,7 +6,6 @@ FactoryGirl.define do
     weight 1
     bait_id 1
     notes "MyText"
-    method_id 1
   end
 
 end

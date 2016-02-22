@@ -75,4 +75,19 @@ describe ExpeditionQuery do
     results = ExpeditionQuery.new({ fish_ids: ['', fish1.id, fish2.id] }).results
     expect(results).to eq([expedition1, expedition2])
   end
+
+  it 'method filter' do
+    method1 = create(:catch_method)
+    method2 = create(:catch_method)
+    method3 = create(:catch_method)
+    expedition1 = create(:expedition)
+    expedition2 = create(:expedition)
+    expedition3 = create(:expedition)
+    create(:catch_cache, catchable: expedition1, method_id: method1.id)
+    create(:catch_cache, catchable: expedition2, method_id: method2.id)
+    create(:catch_cache, catchable: expedition3, method_id: method3.id)
+
+    results = ExpeditionQuery.new({ method_ids: ['', method1.id, method2.id] }).results
+    expect(results).to eq([expedition1, expedition2])
+  end
 end

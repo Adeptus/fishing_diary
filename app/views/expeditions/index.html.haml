@@ -19,6 +19,10 @@
           = f.input :fish_ids, collection: Fish.all, label: _("Ryby"), selected: params[:fish_ids], include_blank: true, input_html: { multiple: true }
         .col-md-3
           = f.input :user_id, collection: User.all.map { |u| [u.username, u.id] }, label: _("Wędkarz"), selected:  params[:user_id], include_blank: true
+      .row
+        .col-md-3
+          = f.input :method_ids, collection: CatchMethod.all, label: _("Metody połowu"), selected: params[:method_ids], include_blank: true, input_html: { multiple: true }
+        .col-md-3
       = f.submit _("Filtruj"), class: 'btn btn-primary'
 %table.table.table-striped
   %thead
@@ -27,6 +31,7 @@
       %th= sortable 'places.name', _("Łowisko")
       %th= _("Ryby")
       %th= sortable 'users.username', _("Wędkarz")
+      %th= _("Metody Połowu")
       %th= _("Ciśnienie(hPa)")
       %th= _("Trend")
       %th= _("Temperatura(°C)")
@@ -45,10 +50,13 @@
           = link_to _("usuń"), expedition_path(expedition), method: :delete, data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-xs btn-danger'
         %td= link_to expedition.place.name, expedition.place
         %td
-          - expedition.catch_caches.order('count desc').each do |catch_cache|
-            %span= "#{catch_cache.fish.name}(#{catch_cache.count}) |"
+          - @presenter.catch_caches(expedition, params[:method_ids]).each do |catch_cache|
+            = "#{catch_cache.fish.name}(#{catch_cache.count})"
 
         %td= expedition.user.username
+        %td
+          - @presenter.catch_methods(expedition, params[:method_ids]).each do |method|
+            = "#{method.name}"
         %td= expedition.pressure
         %td= expedition.pressure_type.try(:text)
         %td= expedition.temperature

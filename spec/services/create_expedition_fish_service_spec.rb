@@ -23,7 +23,7 @@ describe CreateExpeditionFishService do
 
     it 'create CatchCache' do
       service = CreateExpeditionFishService.new(expedition, form)
-      expect { service.call }.to change(CatchCache, :count).by(1)
+      expect { service.call }.to change(CatchCache, :count).by(2)
     end
 
     it 'set correct count' do

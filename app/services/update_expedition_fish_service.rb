@@ -17,6 +17,10 @@ class UpdateExpeditionFishService
   end
 
   def update_catch_cache
-    UpdateCatchCacheService.new(@form.fish_id, @expedition_fish.expedition).call
+    UpdateCatchCacheService.new(
+      @form.fish_id,
+      @expedition_fish.expedition,
+      [@form.method_id]
+    ).call
   end
 end

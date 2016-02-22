@@ -6,6 +6,7 @@ class ExpeditionQuery < BaseQuery
     place_filter
     fish_filter
     user_filter
+    method_filter
     order_results('start_at')
     paginate_result
 
@@ -44,12 +45,23 @@ class ExpeditionQuery < BaseQuery
 
   def fish_filter
     return if !filters[:fish_ids] || filters[:fish_ids].delete_if(&:blank?).blank?
-    catches = CatchCache.where(fish_id: filters[:fish_ids], catchable_type: 'Expedition')
+    catches = CatchCache.where(
+      fish_id: filters[:fish_ids],
+      catchable_type: 'Expedition',
+      method_id: nil
+    )
     @results = @results.where(id: catches.map(&:catchable_id))
   end
 
   def user_filter
     return if filters[:user_id].blank?
     @results = @results.where(user_id: filters[:user_id])
+  end
+
+  def method_filter
+    return if !filters[:method_ids] || filters[:method_ids].delete_if(&:blank?).blank?
+    catches = CatchCache.where(method_id: filters[:method_ids])
+      .where(catchable_type: 'Expedition')
+    @results = @results.where(id: catches.map(&:catchable_id))
   end
 end
