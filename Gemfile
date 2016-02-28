@@ -1,39 +1,33 @@
 source 'https://rubygems.org'
-gem 'rails', '4.2.1'
 
-gem 'pg'
-
-gem 'jquery-rails'
-gem 'rjv', '~> 0.1.3'
-gem 'underscore-rails'
-gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
-gem 'coffee-rails'
-
-gem 'bootstrap-sass'
 gem 'bootstrap-generators', '~> 3.3.4'
-gem 'uglifier', '>= 1.3.0'
-gem 'haml-rails'
-gem 'sass-rails', '~> 5.0'
-
+gem 'bootstrap-sass'
+gem 'cancancan', '~> 1.10'
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'classy_enum'
 gem 'ckeditor'
-
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'devise'
 gem 'gettext_i18n_rails'
-gem 'classy_enum'
-gem 'kaminari'
-gem 'rabl'
-gem 'simple_form'
-gem 'cancancan', '~> 1.10'
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
-
 gem 'gmaps4rails'
+gem 'haml-rails'
+gem 'kaminari'
+gem 'jquery-rails'
+gem 'mini_magick'
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
+gem 'pg'
+gem 'rabl'
+gem 'rails', '4.2.1'
+gem 'rjv', '~> 0.1.3'
+gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
+gem 'uglifier', '>= 1.3.0'
+gem 'underscore-rails'
 
 group :development do
   gem 'better_errors'
-  gem 'html2haml'
   gem 'gettext', '>=3.0.2', :require => false
+  gem 'html2haml'
   gem 'ruby_parser', :require => false
 end
 
