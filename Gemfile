@@ -6,6 +6,7 @@ gem 'cancancan', '~> 1.10'
 gem 'carrierwave'
 gem 'classy_enum'
 gem 'ckeditor'
+gem 'coffee-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'devise'
 gem 'gettext_i18n_rails'

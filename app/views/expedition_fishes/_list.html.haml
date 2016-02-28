@@ -4,8 +4,8 @@
   = simple_form_for '', url: expedition_path(@expedition), method: :get, html: { class: "form-inline" } do |f|
     = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
     = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
-    = f.input :fish_id, collection: Fish.order(:name), label: _("Gatunek"), selected: params[:fish_id], include_blank: true, required: false
-    = f.input :method_id, collection: CatchMethod.all, label: _("Metoda połowu"), selected: params[:method_id], include_blank: true, required: false
+    = f.input :fish_id, collection: Fish.order(:name), label: _("Gatunek"), selected: params[:fish_id], include_blank: true, required: false, input_html: { class: 'select2'}
+    = f.input :method_id, collection: CatchMethod.all, label: _("Metoda połowu"), selected: params[:method_id], include_blank: true, required: false, input_html: { class: 'select2'}
     = f.submit _("Filtruj")
 
 = form_tag destroy_selected_expedition_expedition_fishes_path(@expedition), method: :patch do

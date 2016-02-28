@@ -14,14 +14,14 @@
           = f.input :start_at_to, as: :datetime_picker, label: _("do"), input_html: { value: params[:start_at_to]}
       .row
         .col-md-3
-          = f.input :place_id, collection: Place.all, label: _("Łowisko"), selected: params[:place_id], include_blank: true
+          = f.input :place_id, collection: Place.all, label: _("Łowisko"), selected: params[:place_id], include_blank: true, input_html: { class: 'select2' }
         .col-md-3
-          = f.input :fish_ids, collection: Fish.all, label: _("Ryby"), selected: params[:fish_ids], include_blank: true, input_html: { multiple: true }
+          = f.input :fish_ids, collection: Fish.all, label: _("Ryby"), selected: params[:fish_ids], include_blank: true, input_html: { multiple: true, class: 'select2' }
         .col-md-3
-          = f.input :user_id, collection: User.all.map { |u| [u.username, u.id] }, label: _("Wędkarz"), selected:  params[:user_id], include_blank: true
+          = f.input :user_id, collection: User.all.map { |u| [u.username, u.id] }, label: _("Wędkarz"), selected:  params[:user_id], include_blank: true, input_html: { class: 'select2' }
       .row
         .col-md-3
-          = f.input :method_ids, collection: CatchMethod.all, label: _("Metody połowu"), selected: params[:method_ids], include_blank: true, input_html: { multiple: true }
+          = f.input :method_ids, collection: CatchMethod.all, label: _("Metody połowu"), selected: params[:method_ids], include_blank: true, input_html: { multiple: true, class: 'select2' }
         .col-md-3
       = f.submit _("Filtruj"), class: 'btn btn-primary'
 %table.table.table-striped

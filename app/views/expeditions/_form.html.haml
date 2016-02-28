@@ -9,7 +9,7 @@
     = f.input :accessibility, collection: [['public', _('Publiczna(dostępna dla wszystkich)')], ['private', _('Prywatna(tylko dla mnie)')], ['hide_place', _("Ukryte łowisko(publiczna z ukrytym łowiskiem)")]], label_method: :last, value_method: :first, as: :radio_buttons, checked: accessibility_checked, label: _("Udostępnienie wyprawy")
     = f.input :start_at, as: :datetime_picker, label: _("Rozpoczęcie wędkowania")
     = f.input :end_at, as: :datetime_picker, label: _("Zakończenie wędkowania")
-    = f.input :place_id, collection: Place.all, label: _("Łowisko")
+    = f.input :place_id, collection: Place.all, label: _("Łowisko"), input_html: { class: 'select2'}
   .col-md-6
     %h4= _("Warunki pogodowe:")
     .row
