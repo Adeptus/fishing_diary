@@ -18,6 +18,8 @@
 //= require bootstrap-datetimepicker
 //= require pickers
 //= require underscore
+//= require select2
+//= require select2_locale_pl
 //= require gmaps/google
 //= require ckeditor/init
 //= require moment/pl

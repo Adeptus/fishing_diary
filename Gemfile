@@ -20,6 +20,7 @@ gem 'rabl'
 gem 'rails', '4.2.1'
 gem 'rjv', '~> 0.1.3'
 gem 'sass-rails', '~> 5.0'
+gem "select2-rails"
 gem 'simple_form'
 gem 'uglifier', '>= 1.3.0'
 gem 'underscore-rails'
