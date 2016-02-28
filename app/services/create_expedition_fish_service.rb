@@ -39,7 +39,7 @@ class CreateExpeditionFishService
       @form.fish_id,
       @expedition.id,
       random_length,
-      random_weight,
+      sprintf("%0.02f", random_weight),
       @form.notes.to_s,
       @form.user_id,
       @form.method_id,

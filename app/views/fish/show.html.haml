@@ -18,3 +18,5 @@
   = link_to _("edytuj"), edit_fish_path(@fish), class: 'btn btn-default'
 - if can? :destroy, @fish
   = link_to _("usuń"), fish_path(@fish), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
+
+= render 'catches'

@@ -3,10 +3,11 @@ class FishController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @fish = FishQuery.new(current_user, fishes_params).results
+    @fish = FishQuery.new(fishes_params).results
   end
 
   def show
+    @expedition_fishes = ExpeditionFishQuery.new(expedition_fish_params).results
   end
 
   def new
@@ -55,6 +56,17 @@ class FishController < ApplicationController
     )
   end
 
+  def expedition_fish_params
+    params.permit(
+      :place_id,
+      :sort,
+      :direction,
+      :page,
+      :method_id,
+      :place_type
+    ).merge(fish_id: @fish.id)
+  end
+
   def set_fish
     @fish = Fish.find(params[:id])
   end
@@ -64,10 +76,16 @@ class FishController < ApplicationController
   end
 
   def sort_column
-    ['name', 'fish_type'].include?(params[:sort]) ? params[:sort] : "name"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    if params[:action] == 'index'
+      ['name', 'fish_type'].include?(params[:sort]) ? params[:sort] : "name"
+    elsif params[:action] == 'show'
+      [
+        'length',
+        'weight',
+        'places.name',
+        'catch_methods.name',
+        'users.username'
+      ].include?(params[:sort]) ? params[:sort] : "length"
+    end
   end
 end

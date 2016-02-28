@@ -8,6 +8,7 @@ class PlacesController < ApplicationController
 
   def show
     authorize! :read, @place
+    @expedition_fishes = ExpeditionFishQuery.new(expedition_fish_params).results
   end
 
   def new
@@ -75,11 +76,31 @@ class PlacesController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-  def sort_column
-    ['name', 'place_type', 'water_type'].include?(params[:sort]) ? params[:sort] : "name"
+  def expedition_fish_params
+    params.permit(
+      :fish_id,
+      :sort,
+      :direction,
+      :page,
+      :method_id
+    ).merge(place_id: @place.id)
   end
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  def sort_column
+    if params[:action] == "index"
+      [
+        'name',
+        'place_type',
+        'water_type'
+      ].include?(params[:sort]) ? params[:sort] : "name"
+    elsif params[:action] == 'show'
+      [
+        'length',
+        'weight',
+        'fish.name',
+        'catch_methods.name',
+        'users.username'
+      ].include?(params[:sort]) ? params[:sort] : "length"
+    end
   end
 end

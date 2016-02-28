@@ -100,11 +100,12 @@ class ExpeditionsController < ApplicationController
     if params[:action] == "index"
       ['start_at', 'places.name', 'users.username'].include?(params[:sort]) ? params[:sort] : "start_at"
     elsif params[:action] == 'show'
-      ['length', 'weight', 'fish.name', 'method.name'].include?(params[:sort]) ? params[:sort] : "length"
+      [
+        'length',
+        'weight',
+        'fish.name',
+        'catch_methods.name'
+      ].include?(params[:sort]) ? params[:sort] : "length"
     end
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

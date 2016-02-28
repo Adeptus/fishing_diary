@@ -1,0 +1,36 @@
+.page-header
+  %h2= _("Szczegółowe połowy")
+.row
+  = simple_form_for '', url: fish_path(@fish), method: :get, html: { class: "form-inline" } do |f|
+    = f.input :direction, as: :hidden, input_html: { value: params[:direction]}
+    = f.input :sort, as: :hidden, input_html: { value: params[:sort]}
+    = f.input :place_type, collection: PlaceType.select_options, label: _("Typ łowiska"), selected: params[:place_type], include_blank: true, required: false
+    = f.input :place_id, collection: Place.order(:name), label: _("Łowisko"), selected: params[:place_id], include_blank: true, required: false
+    = f.input :method_id, collection: CatchMethod.all, label: _("Metoda połowu"), selected: params[:method_id], include_blank: true, required: false
+    = f.input :user_id, collection: User.all.map { |u| [u.username, u.id] }, label: _("Wędkarz"), selected: params[:user_id], include_blank: true, required: false
+    = f.submit _("Filtruj")
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+      %th= sortable 'places.name', _('Łowisko')
+      %th= sortable 'length', _('Długość(cm)')
+      %th= sortable 'weight', _('Waga(kg)')
+      %th= sortable 'catch_methods.name', _('Metoda połowu')
+      %th= sortable 'users.username', _('Wędkarz')
+      /%th= _("Bait")
+      %th= _('Notatka')
+  %tbody
+    - @expedition_fishes.each do |fish|
+      %tr
+        %td= image_tag fish.image.thumb
+        %td= fish.expedition.place.name
+        %td= "#{fish.length} cm"
+        %td= "#{fish.weight} kg"
+        %td= fish.method.try(:name)
+        %td= fish.user.username
+        /%td= fish.bait.full_name if fish.bait
+        %td= truncate(fish.notes)
+
+= paginate @expedition_fishes
