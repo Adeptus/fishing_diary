@@ -1,0 +1,15 @@
+- set_var 'commentable', { commentableId: commentable.id, commentableClass: commentable.class.to_s, canComment: (current_user), commentsCount: commentable.root_comments.count }
+- if current_user
+  - set_var 'currentUser', { id: current_user.id, username: current_user.username }#, user_avatar_url: current_user.avatar.small_size.url }
+
+.container#comments-container
+  %section.row
+    .col-md-11.col-sm-11.col-xs-11.comment-heading
+      .row
+        .col-md-11.col-sm-12.col-xs-12.text-right
+          %h3=_('Comments')
+  %section.row
+    .col-md-11.col-sm-11.col-xs-11.video-comments
+      .comment-form
+      %ul#comments-list
+      = link_to _('More'), '#', class: 'more btn btn-comment-save btn-block'

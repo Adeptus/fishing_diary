@@ -52,11 +52,17 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_commentable_with_threading (2.0.1)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      awesome_nested_set (>= 3.0)
     addressable (2.3.8)
     arel (6.0.0)
     autoprefixer-rails (5.1.11)
       execjs
       json
+    awesome_nested_set (3.0.3)
+      activerecord (>= 4.0.0, < 5)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -134,6 +140,16 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    hamlbars (2.1.1)
+      execjs (>= 1.2)
+      haml
+      sprockets (>= 2.0)
+      tilt
+    handlebars_assets (0.23.0)
+      execjs (~> 2.0)
+      multi_json (~> 1.0)
+      sprockets (>= 2.0.0)
+      tilt (>= 1.2)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -159,6 +175,7 @@ GEM
     mini_magick (4.2.4)
     mini_portile (0.6.2)
     minitest (5.6.1)
+    multi_json (1.11.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
@@ -259,6 +276,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable_with_threading
   better_errors
   bootstrap-generators (~> 3.3.4)
   bootstrap-sass
@@ -278,6 +296,8 @@ DEPENDENCIES
   gettext_i18n_rails
   gmaps4rails
   haml-rails
+  hamlbars (~> 2.1)
+  handlebars_assets
   html2haml
   jquery-rails
   kaminari

@@ -1,0 +1,29 @@
+%li.comment
+  %br/
+  .row
+    .col-md-11.col.col-sm-9.col-xs-9
+      .row.text-right
+        %a{ href: "/profiles/{{ slug }}"}
+          %p {{ username }}
+      .row
+        %p.comment {{ body }}
+    .col-md-1.text-center.col.sm-2.col-xs-2
+      %a{ href: "/profiles/user_id"}
+        %img.user-avatar{src: "{{user_avatar_url}}"}/
+  = hb 'if currentUser' do
+    .row.comment-row.actions-row
+      .col-md-11.text-right.col-sm-10.col-xs-12
+        .col-md-1.col-sm-3.col-xs-3.no-padding.pull-right
+          = hb 'unless is_child' do
+            %a{ href: '#', class: 'add-children-comment-form', parent: "{{ id }}"}
+              dodaj pod komentarz
+        .col-md-1.col-sm-3.col-xs-3.no-padding.pull-right
+          = hb 'if can_remove' do
+            %a{ data: { confirm: "Are you sure?" }, class: 'remove-comment', href: '/comments/{{ id }}' }
+              x
+  = hb 'unless is_child' do
+    .children-comment-form
+    %ul.children-comments
+  = hb 'if has_children' do
+    %a{ class: 'more-children-comments new btn btn-comment-save btn-block', href: '/json/comments/{{ id }}/children_comments?page=1' }
+      More

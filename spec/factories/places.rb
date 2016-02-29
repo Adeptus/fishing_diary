@@ -6,5 +6,4 @@ FactoryGirl.define do
     address "MyText"
     private false
   end
-
 end

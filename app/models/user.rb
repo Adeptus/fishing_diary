@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :expeditions
   has_many :expedition_fishes
+  has_many :comments, dependent: :destroy
+
+  mount_uploader :avatar, AvatarUploader
 end

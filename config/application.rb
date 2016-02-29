@@ -51,5 +51,7 @@ module FishingDiary
     config.time_zone = ENV["time_zone"] || "Warsaw"
     config.i18n.default_locale = :pl
     config.active_record.raise_in_transactional_callbacks = true
+
+    HandlebarsAssets::Config.haml_options
   end
 end

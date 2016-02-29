@@ -23,4 +23,7 @@
 //= require gmaps/google
 //= require ckeditor/init
 //= require moment/pl
+//= require handlebars.runtime
+//= require handlebars
+//= require_tree ./templates
 //= require_tree .

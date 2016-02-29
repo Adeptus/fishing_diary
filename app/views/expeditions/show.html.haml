@@ -47,7 +47,7 @@
 %p
   %strong= _("Opis:")
   %br
-  = @expedition.notes.html_safe
+  = @expedition.notes.html_safe if @expedition.notes
 
 
 = link_to _("Dodaj ryby"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-default'
@@ -59,3 +59,5 @@
 
 = render 'expedition_fishes/list', expedition_fishes: @expedition_fishes
 = link_to _("Dodaj ryby"), new_expedition_expedition_fish_path(@expedition), class: 'btn btn-primary'
+
+= render 'comments/comments_container', commentable: @expedition

@@ -12,4 +12,6 @@ class Expedition < ActiveRecord::Base
   classy_enum_attr :showers, allow_nil: true, allow_blank: true
   classy_enum_attr :wind_direction, allow_nil: true, allow_blank: true
   classy_enum_attr :pressure_type, allow_nil: true, allow_blank: true
+
+  acts_as_commentable
 end
