@@ -6,4 +6,5 @@ class ExpeditionFish < ActiveRecord::Base
   belongs_to :method, class_name: 'CatchMethod'
 
   mount_uploader :image, ImageUploader
+  acts_as_commentable
 end

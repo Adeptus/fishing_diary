@@ -79,9 +79,9 @@ CommentsWidget = function() {
           response['can_remove'] = (response['user_id'] == currentUser.id && !response['has_children'])
         }
         if(form.find('.comment_parent_id').val() == '') {
-          $('#comments-list').append(HandlebarsTemplates['comments/comment'](response));
+          $('#comments-list').prepend(HandlebarsTemplates['comments/comment'](response));
         } else {
-          form.parent().next().append(HandlebarsTemplates['comments/comment'](response));
+          form.parent().prev().prepend(HandlebarsTemplates['comments/comment'](response));
           form.remove();
         }
       },
@@ -106,11 +106,7 @@ CommentsWidget = function() {
   function addCommentForm(link) {
     var data = formData();
     data['parentId'] = link.attr('parent')
-    var element = link.closest('.comment').find('.children-comment-form');
-    element.html(HandlebarsTemplates['comments/new'](data));
-    $('html, body').animate({
-      scrollTop: element.offset().top
-    }, 2000);
+    link.closest('.comment').find('.children-comment-form').html(HandlebarsTemplates['comments/new'](data));
   }
 
   function successHandler(comments) {

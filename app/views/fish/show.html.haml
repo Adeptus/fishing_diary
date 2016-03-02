@@ -20,3 +20,5 @@
   = link_to _("usuń"), fish_path(@fish), method: "delete", data: { confirm: _("Czy jesteś pewien?") }, class: 'btn btn-danger'
 
 = render 'catches'
+
+= render 'comments/comments_container', commentable: @fish

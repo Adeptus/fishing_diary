@@ -22,8 +22,8 @@
             %a{ data: { confirm: "Are you sure?" }, class: 'remove-comment', href: '/comments/{{ id }}' }
               x
   = hb 'unless is_child' do
-    .children-comment-form
     %ul.children-comments
+    .children-comment-form
   = hb 'if has_children' do
     %a{ class: 'more-children-comments new btn btn-comment-save btn-block', href: '/json/comments/{{ id }}/children_comments?page=1' }
       More

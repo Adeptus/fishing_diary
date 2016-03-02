@@ -9,4 +9,5 @@ class Place < ActiveRecord::Base
   has_many :expedition_fishes, through: :expeditions
 
   belongs_to :user
+  acts_as_commentable
 end
